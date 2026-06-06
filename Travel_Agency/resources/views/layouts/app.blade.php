@@ -22,20 +22,113 @@
                 </a>
             </div>
             <div class="hidden gap-8 md:flex">
-         <a href="/#destinations" class="transition hover:text-yellow-400 {{ request()->is('destinations') ? 'font-semibold text-yellow-400' : '' }}">Destinations</a>
-            <a href="/tours" class="transition hover:text-yellow-400 {{ request()->is('tours') ? 'font-semibold text-yellow-400' : '' }}">Holidays & Tours</a>
-            <a href="/#services" class="transition hover:text-yellow-400 {{ request()->is('services') ? 'font-semibold text-yellow-400' : '' }}">Services</a>
-            <a href="/#contact" class="transition hover:text-yellow-400 {{ request()->is('contact') ? 'font-semibold text-yellow-400' : '' }}">Contact</a>
+                <a href="/destinations" class="transition hover:text-yellow-400 {{ request()->is('destinations') ? 'font-semibold text-yellow-400' : '' }}">Destinations</a>
+                <a href="/tours" class="transition hover:text-yellow-400 {{ request()->is('tours*') ? 'font-semibold text-yellow-400' : '' }}">Holidays & Tours</a>
+                <a href="/#services" class="transition hover:text-yellow-400">Services</a>
+                <a href="/faq" class="transition hover:text-yellow-400 {{ request()->is('faq') ? 'font-semibold text-yellow-400' : '' }}">FAQ</a>
+                <a href="/contact" class="transition hover:text-yellow-400 {{ request()->is('contact') ? 'font-semibold text-yellow-400' : '' }}">Contact</a>
             </div>
-            <a href="#contact" class="rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
+            <a href="/contact" class="rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
                 Plan Trip
             </a>
         </header>
     </nav>
-
     @yield('content')
 
-    
+    <!-- Footer Section -->
+    <footer class="relative mt-20 border-t border-emerald-500/20 bg-[#020a05]/80 backdrop-blur-xl pt-16 pb-8 z-10">
+        
+        <!-- Decorative Glows -->
+        <div class="absolute top-0 left-1/4 w-96 h-px bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent"></div>
+        <div class="absolute -top-10 right-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
+                
+                <!-- Column 1: Brand & About -->
+                <div class="flex flex-col gap-6">
+                    <a href="/" class="inline-block">
+                        <p class="text-xl font-bold tracking-[0.2em] text-white uppercase">
+                            Sandun Travels
+                        </p>
+                    </a>
+                    <p class="text-sm text-emerald-100/60 leading-relaxed">
+                        Curating premium, tailor-made travel experiences across Sri Lanka. Discover ancient heritage, pristine beaches, and breathtaking wildlife with our dedicated destination experts.
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-4 mt-2">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Quick Links</h4>
+                    <ul class="flex flex-col gap-3 text-sm text-emerald-100/60">
+                        <li><a href="/" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Home</a></li>
+                        <li><a href="/tours" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Holidays & Tours</a></li>
+                        <li><a href="/#destinations" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Destinations</a></li>
+                        <li><a href="/#services" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Our Services</a></li>
+                        <li><a href="/faq" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">FAQ</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Top Destinations -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Top Destinations</h4>
+                    <ul class="flex flex-col gap-3 text-sm text-emerald-100/60">
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Anuradhapura & Polonnaruwa</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Sigiriya Rock Citadel</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Kandy & Nuwara Eliya</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Yala National Park</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Southern Coastal Beaches</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Newsletter & Contact -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Stay Updated</h4>
+                    <p class="text-xs text-emerald-100/60 mb-4 leading-relaxed">Subscribe to our newsletter for exclusive tour offers and travel inspiration.</p>
+                    
+                    <form action="#" class="flex gap-2 mb-6">
+                        <input type="email" placeholder="Your email address" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 text-xs transition-colors">
+                        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-emerald-950 px-4 rounded-lg font-bold transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </form>
+
+                    <div class="flex flex-col gap-2 text-xs text-emerald-100/60">
+                        <p class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                            <span>📞</span> +94 77 123 4567
+                        </p>
+                        <p class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                            <span>✉️</span> hello@sanduntravels.com
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-emerald-100/40">
+                <p>&copy; {{ date('Y') }} Sandun Travels. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-yellow-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-yellow-400 transition-colors">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {

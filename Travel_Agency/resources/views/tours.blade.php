@@ -106,8 +106,8 @@
 
             <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 
-                <!-- Card 1 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100">
+                <!-- Card 1 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Couple Selfie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -125,10 +125,10 @@
                             <span class="text-white font-bold tracking-wide">NOK 13,861</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
-                <!-- Card 2 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200">
+                <!-- Card 2 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Nine Arches Bridge" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -146,10 +146,10 @@
                             <span class="text-white font-bold tracking-wide">NOK 17,557</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
-                <!-- Card 3 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300">
+                <!-- Card 3 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Hammock Relax" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -167,10 +167,10 @@
                             <span class="text-white font-bold tracking-wide">NOK 27,259</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
-                <!-- Card 4 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100">
+                <!-- Card 4 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=600&q=80" alt="Tea Fields" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -188,10 +188,10 @@
                             <span class="text-white font-bold tracking-wide">NOK 7,392</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
-                <!-- Card 5 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200">
+                <!-- Card 5 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=600&q=80" alt="Tropical Trails" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -209,10 +209,10 @@
                             <span class="text-white font-bold tracking-wide">NOK 9,056</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
-                <!-- Card 6 -->
-                <article class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300">
+                <!-- Card 6 (Clickable Link) -->
+                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300 cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Romantic Beach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
@@ -230,7 +230,7 @@
                             <span class="text-white font-bold tracking-wide">NOK 17,095</span>
                         </div>
                     </div>
-                </article>
+                </a>
 
             </div>
 
