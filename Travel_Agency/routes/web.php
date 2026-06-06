@@ -7,7 +7,10 @@ Route::get('/tours', function () {
     $tours = \App\Models\Tour::with('destination')->get();
     return view('tours', compact('tours')); 
 });
-Route::get('/tours/dream-route', function () { return view('tour-detail'); });
+Route::get('/tours/{tour}', function (\App\Models\Tour $tour) { 
+    $tour->load('itineraries');
+    return view('tour-detail', compact('tour')); 
+});
 Route::get('/faq', function () { return view('faq'); });
 
 // Add these two new routes:

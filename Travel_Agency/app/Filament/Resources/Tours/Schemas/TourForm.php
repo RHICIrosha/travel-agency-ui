@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Tours\Schemas;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Schema;
 
 class TourForm
@@ -29,6 +31,35 @@ class TourForm
                     ->numeric(),
                 FileUpload::make('image_url')
                     ->image(),
+                TextInput::make('suitable_for')
+                    ->placeholder('e.g., Family, Couple & Friends'),
+                TagsInput::make('inclusions')
+                    ->placeholder('e.g., Accommodation, Airport Pick-up'),
+                TagsInput::make('themes')
+                    ->placeholder('e.g., Beach, City Tours, Culture'),
+                Repeater::make('itineraries')
+                    ->relationship()
+                    ->schema([
+                        TextInput::make('day_number')
+                            ->required()
+                            ->numeric(),
+                        TextInput::make('location_name')
+                            ->required(),
+                        TextInput::make('title')
+                            ->required(),
+                        Textarea::make('description')
+                            ->columnSpanFull(),
+                        TagsInput::make('activities')
+                            ->placeholder('e.g., Airport pickup, Explore Fort')
+                            ->columnSpanFull(),
+                        FileUpload::make('image_url')
+                            ->image(),
+                        TextInput::make('travel_time')
+                            ->placeholder('e.g., 4 Hrs Travel'),
+                    ])
+                    ->columnSpanFull()
+                    ->defaultItems(1)
+                    ->collapsible(),
             ]);
     }
 }
