@@ -26,107 +26,17 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
-            
-            <!-- Popular Item 1 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-100 block">
-                <img src="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80" alt="Sigiriya" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            @foreach($destinations as $index => $destination)
+            <!-- Destination Item -->
+            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-{{ ($index % 4 + 1) * 100 }} block">
+                <img src="{{ Str::startsWith($destination->image_url, 'http') ? $destination->image_url : Storage::url($destination->image_url) }}" alt="{{ $destination->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Sigiriya</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Ancient Citadel</p>
+                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">{{ $destination->name }}</h3>
+                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">{{ $destination->description }}</p>
                 </div>
             </a>
-
-            <!-- Popular Item 2 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-200 block">
-                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Ella" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Ella</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Hill Country</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 3 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-300 block">
-                <img src="https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&w=600&q=80" alt="Nuwara Eliya" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Nuwara Eliya</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Little England</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 4 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-400 block">
-                <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=600&q=80" alt="Kandy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Kandy</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Cultural Capital</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 5 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-100 block">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Mirissa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Mirissa</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Whales & Surf</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 6 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-200 block">
-                <img src="https://images.unsplash.com/photo-1596815064285-45ed8a9c0463?auto=format&fit=crop&w=600&q=80" alt="Trincomalee" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Trincomalee</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">East Coast</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 7 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-300 block">
-                <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80" alt="Arugam Bay" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Arugam Bay</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Surfing Haven</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 8 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-400 block">
-                <img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=600&q=80" alt="Yala National Park" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Yala Park</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Leopard Safari</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 9 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-100 block">
-                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80" alt="Galle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Galle</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Historic Fort</p>
-                </div>
-            </a>
-
-            <!-- Popular Item 10 -->
-            <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-200 block">
-                <img src="https://images.unsplash.com/photo-1588714477688-61d0f50c0c00?auto=format&fit=crop&w=600&q=80" alt="Bentota" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                <div class="absolute bottom-5 left-5 right-5">
-                    <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">Bentota</h3>
-                    <p class="text-[10px] text-emerald-300 uppercase tracking-wider mt-1 font-semibold">Water Sports</p>
-                </div>
-            </a>
-
+            @endforeach
         </div>
     </section>
 
