@@ -105,133 +105,30 @@
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                
-                <!-- Card 1 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100 cursor-pointer">
+                @foreach($tours as $index => $tour)
+                @php
+                    $delay = ($index % 3 + 1) * 100;
+                @endphp
+                <a href="/tours/{{ $tour->id }}" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-{{ $delay }} cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Couple Selfie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="{{ Str::startsWith($tour->image_url, 'http') ? $tour->image_url : Storage::url($tour->image_url) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
                     <div class="p-5 flex flex-col flex-1">
                         <div class="flex justify-between items-center mb-3">
                             <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
-                            </div>
-                            <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made </span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">10 Days - Sri Lanka Dream Route</h3>
-                        <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
-                            <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 13,861</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 2 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200 cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Nine Arches Bridge" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
+                                {{ $tour->destination?->name ?? 'Sri Lanka' }}
                             </div>
                             <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made</span>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">A 12-Day Island Adventure Awaits</h3>
+                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">{{ $tour->duration_days }} Days - {{ $tour->title }}</h3>
                         <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
                             <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 17,557</span>
+                            <span class="text-white font-bold tracking-wide">NOK {{ number_format($tour->price) }}</span>
                         </div>
                     </div>
                 </a>
-
-                <!-- Card 3 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300 cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Hammock Relax" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
-                            </div>
-                            <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">14 Days - Sri Lanka Intimate Trails</h3>
-                        <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
-                            <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 27,259</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 4 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-100 cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=600&q=80" alt="Tea Fields" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
-                            </div>
-                            <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">5 Days - Essence of Sri Lanka</h3>
-                        <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
-                            <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 7,392</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 5 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-200 cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=600&q=80" alt="Tropical Trails" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
-                            </div>
-                            <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">6 Days - Tropical Trails</h3>
-                        <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
-                            <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 9,056</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 6 (Clickable Link) -->
-                <a href="/tours/dream-route" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-300 cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" alt="Romantic Beach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    </div>
-                    <div class="p-5 flex flex-col flex-1">
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                Sri Lanka
-                            </div>
-                            <span class="bg-white/5 border border-white/10 text-white/90 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md backdrop-blur">Tailor Made</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">5 Romantic Days in Paradise</h3>
-                        <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
-                            <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK 17,095</span>
-                        </div>
-                    </div>
-                </a>
-
+                @endforeach
             </div>
 
             <!-- Load More Button -->
