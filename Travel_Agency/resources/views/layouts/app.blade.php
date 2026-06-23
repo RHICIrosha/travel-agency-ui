@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandun Travels | Premium Sri Lankan Travel Experience</title>
+    <title>Zenora Travels | Discover the Soul of Sri Lanka</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -17,7 +17,7 @@
             <div>
                 <a href="/">
                     <p class="text-lg font-semibold tracking-[0.24em] text-white uppercase hover:text-yellow-400 transition cursor-pointer">
-                        Sandun Travels
+                        Zenora Travels
                     </p>
                 </a>
             </div>
@@ -49,11 +49,11 @@
                 <div class="flex flex-col gap-6">
                     <a href="/" class="inline-block">
                         <p class="text-xl font-bold tracking-[0.2em] text-white uppercase">
-                            Sandun Travels
+                            Zenora Travels
                         </p>
                     </a>
                     <p class="text-sm text-emerald-100/60 leading-relaxed">
-                        Curating premium, tailor-made travel experiences across Sri Lanka. Discover ancient heritage, pristine beaches, and breathtaking wildlife with our dedicated destination experts.
+                        We create meaningful experiences and lifelong memories across Sri Lanka. Local expertise, personalized service, and a passion for adventure — that's Zenora Travels.
                     </p>
                     <!-- Social Links -->
                     <div class="flex items-center gap-4 mt-2">
@@ -111,7 +111,7 @@
                             <span>📞</span> +94 77 123 4567
                         </p>
                         <p class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
-                            <span>✉️</span> hello@sanduntravels.com
+                            <span>✉️</span> hello@zenoratravels.com
                         </p>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
 
             <!-- Bottom Copyright Bar -->
             <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-emerald-100/40">
-                <p>&copy; {{ date('Y') }} Sandun Travels. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Zenora Travels. All rights reserved.</p>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-yellow-400 transition-colors">Terms of Service</a>

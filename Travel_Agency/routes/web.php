@@ -2,7 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () {
+    $settings            = \App\Models\HomepageSetting::getSettings();
+    $whyUsItems          = \App\Models\WhyUsItem::active()->get();
+    $homeServices        = \App\Models\HomeService::active()->get();
+    $featuredDestinations = \App\Models\FeaturedDestination::active()->get();
+    return view('welcome', compact('settings', 'whyUsItems', 'homeServices', 'featuredDestinations'));
+});
 Route::get('/tours', function () { 
     $tours = \App\Models\Tour::with('destination')->get();
     return view('tours', compact('tours')); 
