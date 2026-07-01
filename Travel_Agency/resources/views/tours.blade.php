@@ -91,7 +91,13 @@
                 @endphp
                 <a href="/tours/{{ $tour->id }}" class="glass-panel shine-border overflow-hidden rounded-[1.5rem] flex flex-col transition-transform duration-300 hover:-translate-y-2 group reveal-up delay-{{ $delay }} cursor-pointer">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="{{ Str::startsWith($tour->image_url, 'http') ? $tour->image_url : Storage::url($tour->image_url) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        @if(!empty($tour->image_url))
+                            <img src="{{ Str::startsWith($tour->image_url, 'http') ? $tour->image_url : Storage::url($tour->image_url) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        @else
+                            <div class="w-full h-full bg-emerald-900/20 flex items-center justify-center p-4 text-center">
+                                <span class="text-emerald-500 font-medium">{{ $tour->title }}</span>
+                            </div>
+                        @endif
                     </div>
                     <div class="p-5 flex flex-col flex-1">
                         <div class="flex justify-between items-center mb-3">

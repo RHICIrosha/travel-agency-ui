@@ -26,7 +26,13 @@
             
             <!-- Image Gallery/Hero Area -->
             <div class="relative w-full aspect-[16/9] rounded-[2rem] overflow-hidden group shine-border">
-                <img src="{{ Str::startsWith($tour->image_url, 'http') ? $tour->image_url : Storage::url($tour->image_url) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                @if(!empty($tour->image_url))
+                    <img src="{{ Str::startsWith($tour->image_url, 'http') ? $tour->image_url : Storage::url($tour->image_url) }}" alt="{{ $tour->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                @else
+                    <div class="w-full h-full bg-emerald-900/20 flex items-center justify-center p-8 text-center">
+                        <span class="text-emerald-500 font-medium text-2xl">{{ $tour->title }}</span>
+                    </div>
+                @endif
                 <div class="absolute inset-0 bg-gradient-to-t from-[#020a05]/80 via-transparent to-transparent"></div>
                 <div class="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-10">
                     <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 cursor-pointer"></span>

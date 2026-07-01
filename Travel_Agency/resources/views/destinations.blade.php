@@ -29,7 +29,13 @@
             @foreach($destinations as $index => $destination)
             <!-- Destination Item -->
             <a href="#" class="relative h-64 sm:h-72 rounded-[1.5rem] overflow-hidden group shine-border reveal-up delay-{{ ($index % 4 + 1) * 100 }} block">
-                <img src="{{ Str::startsWith($destination->image_url, 'http') ? $destination->image_url : Storage::url($destination->image_url) }}" alt="{{ $destination->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                @if(!empty($destination->image_url))
+                    <img src="{{ Str::startsWith($destination->image_url, 'http') ? $destination->image_url : Storage::url($destination->image_url) }}" alt="{{ $destination->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                @else
+                    <div class="w-full h-full bg-emerald-900/20 flex items-center justify-center p-4 text-center">
+                        <span class="text-emerald-500 font-medium">{{ $destination->name }}</span>
+                    </div>
+                @endif
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-5 left-5 right-5">
                     <h3 class="text-white font-bold text-lg group-hover:text-yellow-400 transition-colors">{{ $destination->name }}</h3>
@@ -56,7 +62,13 @@
             @endphp
             <div class="glass-panel shine-border rounded-[2rem] overflow-hidden flex flex-col reveal-up {{ $delay }}">
                 <div class="h-48 overflow-hidden relative">
-                    <img src="{{ Str::startsWith($category->image_url, 'http') ? $category->image_url : asset($category->image_url) }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
+                    @if(!empty($category->image_url))
+                        <img src="{{ Str::startsWith($category->image_url, 'http') ? $category->image_url : asset($category->image_url) }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-emerald-900/20 flex items-center justify-center p-4 text-center">
+                            <span class="text-emerald-500 font-medium">{{ $category->name }}</span>
+                        </div>
+                    @endif
                     <div class="absolute inset-0 bg-gradient-to-t from-[#020a05] to-transparent"></div>
                     <h3 class="absolute bottom-4 left-6 {{ $category->name === 'Beaches & Coastal' ? 'text-2xl' : 'text-xl' }} font-bold text-white flex items-center gap-2"><span>{{ $category->icon }}</span> {{ $category->name }}</h3>
                 </div>
