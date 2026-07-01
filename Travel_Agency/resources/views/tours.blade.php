@@ -104,7 +104,7 @@
                         <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">{{ $tour->duration_days }} Days - {{ $tour->title }}</h3>
                         <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
                             <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">NOK {{ number_format($tour->price) }}</span>
+                            <span class="text-white font-bold tracking-wide">LKR {{ number_format($tour->price) }}</span>
                         </div>
                     </div>
                 </a>

@@ -210,7 +210,7 @@
             <div class="glass-panel shine-border rounded-[2rem] p-6 sm:p-8">
                 <div class="border-b border-white/10 pb-4 mb-6">
                     <p class="text-xs uppercase tracking-wider text-emerald-100/50 mb-1">Price Per Person</p>
-                    <div class="text-3xl font-bold text-white">${{ number_format($tour->price, 2) }}</div>
+                    <div class="text-3xl font-bold text-white">LKR {{ number_format($tour->price, 2) }}</div>
                 </div>
 
                 <div class="flex gap-4 items-start mb-6">
