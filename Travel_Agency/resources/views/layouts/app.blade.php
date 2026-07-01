@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zenora Travels | Discover the Soul of Sri Lanka</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
 
 </head>
 <body class="text-white relative">
@@ -28,9 +25,14 @@
                 <a href="/faq" class="transition hover:text-yellow-400 {{ request()->is('faq') ? 'font-semibold text-yellow-400' : '' }}">FAQ</a>
                 <a href="/contact" class="transition hover:text-yellow-400 {{ request()->is('contact') ? 'font-semibold text-yellow-400' : '' }}">Contact</a>
             </div>
-            <a href="/contact" class="rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
-                Plan Trip
-            </a>
+            <div class="flex items-center gap-3">
+                <!-- Translator Widget -->
+                <div id="google_translate_element" class="hidden sm:block"></div>
+                
+                <a href="/contact" class="shrink-0 rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
+                    Plan Trip
+                </a>
+            </div>
         </header>
     </nav>
     @yield('content')
@@ -152,6 +154,76 @@
                 });
             }, 100);
         });
+
     </script>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        /* Style the native Google Translate select dropdown */
+        .goog-te-combo {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 9999px !important;
+            padding: 6px 28px 6px 12px !important;
+            color: white !important;
+            font-family: inherit !important;
+            font-size: 13px !important;
+            backdrop-filter: blur(8px);
+            outline: none !important;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 8px center !important;
+            background-size: 12px !important;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .goog-te-combo:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        .goog-te-combo option {
+            background-color: #020a05;
+            color: white;
+        }
+        
+        /* Hide google translate banner at the top */
+        body {
+            top: 0px !important; 
+        }
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        .skiptranslate.goog-te-gadget {
+            font-size: 0 !important;
+            color: transparent !important;
+        }
+        /* Hide the Google logo and extra text */
+        .goog-te-gadget span {
+            display: none !important;
+        }
+        .goog-logo-link {
+            display: none !important;
+        }
+        /* Fix body position if Google Translate tries to shift it */
+        html {
+            height: 100%;
+        }
+        /* Style for the translated text hover color */
+        font {
+            background-color: transparent !important;
+        }
+    </style>
 </body>
 </html>
