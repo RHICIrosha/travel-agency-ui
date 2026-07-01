@@ -7,16 +7,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        /* Hide Google Translate Default UI */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; height: auto !important; min-height: 100vh !important; }
-        html { height: auto !important; }
-        #google_translate_element { display: none !important; }
-        .goog-tooltip { display: none !important; }
-        .goog-tooltip:hover { display: none !important; }
-        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
-    </style>
 </head>
 <body class="text-white relative">
 
