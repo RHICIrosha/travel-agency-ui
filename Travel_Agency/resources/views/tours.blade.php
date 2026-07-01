@@ -13,89 +13,65 @@
         
         <!-- Sidebar Filters -->
         <aside class="w-full lg:w-72 shrink-0 glass-panel shine-border rounded-3xl p-6 self-start lg:sticky lg:top-32 reveal-up delay-100">
-            
-            <!-- Filter: Number of Days -->
-            <div class="mb-8">
-                <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Number of Days</h3>
-                <div class="px-2">
-                    <input type="range" min="3" max="15" value="10" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-yellow-400">
-                    <div class="flex justify-between text-xs text-emerald-100/60 mt-2 font-medium">
-                        <span>3</span>
-                        <span>6</span>
-                        <span>9</span>
-                        <span>12</span>
-                        <span>15</span>
+            <form id="filterForm" action="/tours" method="GET">
+                <!-- Filter: Number of Days -->
+                <div class="mb-8">
+                    <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Number of Days</h3>
+                    <div class="px-2">
+                        <input type="range" name="days" min="3" max="15" value="{{ request('days', 15) }}" onchange="this.form.submit()" oninput="document.getElementById('days_val').innerText = this.value" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-yellow-400">
+                        <div class="flex justify-between text-xs text-emerald-100/60 mt-2 font-medium">
+                            <span>3</span>
+                            <span id="days_val" class="text-white font-bold">{{ request('days', 15) }}</span>
+                            <span>15</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <hr class="border-white/10 mb-8">
+                <hr class="border-white/10 mb-8">
 
-            <!-- Filter: Destination -->
-            <div class="mb-8">
-                <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Destination</h3>
-                <div class="flex flex-col gap-3">
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" checked class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Sri Lanka</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Maldives</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Vietnam</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Indonesia</span>
-                    </label>
+                <!-- Filter: Destination -->
+                <div class="mb-8">
+                    <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Destination</h3>
+                    <div class="flex flex-col gap-3">
+                        @foreach($allDestinations as $destination)
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="destinations[]" value="{{ $destination->id }}" onchange="this.form.submit()" {{ in_array($destination->id, request('destinations', [])) ? 'checked' : '' }} class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
+                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ $destination->name }}</span>
+                        </label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
 
-            <hr class="border-white/10 mb-8">
+                <hr class="border-white/10 mb-8">
 
-            <!-- Filter: Trip Type -->
-            <div class="mb-8">
-                <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Trip Type</h3>
-                <div class="flex flex-col gap-3">
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" checked class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Tailor Made Tours</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Fixed Departures</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Getaway</span>
-                    </label>
+                <!-- Filter: Trip Type -->
+                <div class="mb-8">
+                    <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Trip Type</h3>
+                    <div class="flex flex-col gap-3">
+                        @foreach(['Tailor Made', 'Fixed Departures', 'Getaway'] as $tripType)
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="trip_types[]" value="{{ $tripType }}" onchange="this.form.submit()" {{ in_array($tripType, request('trip_types', [])) ? 'checked' : '' }} class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
+                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ $tripType }}</span>
+                        </label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
 
-            <hr class="border-white/10 mb-8">
+                <hr class="border-white/10 mb-8">
 
-            <!-- Filter: Tour Theme -->
-            <div>
-                <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Tour Theme</h3>
-                <div class="flex flex-col gap-3">
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Honeymoon</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Wildlife</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer group">
-                        <input type="checkbox" class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                        <span class="text-sm text-emerald-100/80 group-hover:text-white transition">Adventure</span>
-                    </label>
+                <!-- Filter: Tour Theme -->
+                <div>
+                    <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Tour Theme</h3>
+                    <div class="flex flex-col gap-3">
+                        @foreach(['Honeymoon', 'Wildlife', 'Adventure'] as $theme)
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input type="checkbox" name="themes[]" value="{{ $theme }}" onchange="this.form.submit()" {{ in_array($theme, request('themes', [])) ? 'checked' : '' }} class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
+                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ $theme }}</span>
+                        </label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-
+            </form>
         </aside>
 
         <!-- Right Side: Tours Grid -->
