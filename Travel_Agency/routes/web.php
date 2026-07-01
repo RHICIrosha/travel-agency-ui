@@ -38,8 +38,33 @@ Route::get('/tours', function (\Illuminate\Http\Request $request) {
 
     $tours = $query->get();
     $allDestinations = \App\Models\Destination::all();
+
+    // Fetch unique trip types
+    $tripTypesFromDb = \App\Models\Tour::whereNotNull('suitable_for')->pluck('suitable_for');
+    $allTripTypes = [];
+    foreach ($tripTypesFromDb as $typeStr) {
+        $types = array_map('trim', explode(',', $typeStr));
+        foreach ($types as $type) {
+            if (!empty($type) && !in_array($type, $allTripTypes)) {
+                $allTripTypes[] = $type;
+            }
+        }
+    }
+
+    // Fetch unique themes
+    $themesFromDb = \App\Models\Tour::whereNotNull('themes')->pluck('themes');
+    $allThemes = [];
+    foreach ($themesFromDb as $themeArray) {
+        if (is_array($themeArray)) {
+            foreach ($themeArray as $theme) {
+                if (!empty($theme) && !in_array($theme, $allThemes)) {
+                    $allThemes[] = $theme;
+                }
+            }
+        }
+    }
     
-    return view('tours', compact('tours', 'allDestinations')); 
+    return view('tours', compact('tours', 'allDestinations', 'allTripTypes', 'allThemes')); 
 });
 Route::get('/tours/{tour}', function (\App\Models\Tour $tour) { 
     $tour->load('itineraries');

@@ -48,12 +48,14 @@
                 <div class="mb-8">
                     <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Trip Type</h3>
                     <div class="flex flex-col gap-3">
-                        @foreach(['Tailor Made', 'Fixed Departures', 'Getaway'] as $tripType)
+                        @forelse($allTripTypes as $tripType)
                         <label class="flex items-center gap-3 cursor-pointer group">
                             <input type="checkbox" name="trip_types[]" value="{{ $tripType }}" onchange="this.form.submit()" {{ in_array($tripType, request('trip_types', [])) ? 'checked' : '' }} class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ $tripType }}</span>
+                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ ucfirst($tripType) }}</span>
                         </label>
-                        @endforeach
+                        @empty
+                        <span class="text-sm text-emerald-100/50">No trip types available</span>
+                        @endforelse
                     </div>
                 </div>
 
@@ -63,12 +65,14 @@
                 <div>
                     <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Tour Theme</h3>
                     <div class="flex flex-col gap-3">
-                        @foreach(['Honeymoon', 'Wildlife', 'Adventure'] as $theme)
+                        @forelse($allThemes as $theme)
                         <label class="flex items-center gap-3 cursor-pointer group">
                             <input type="checkbox" name="themes[]" value="{{ $theme }}" onchange="this.form.submit()" {{ in_array($theme, request('themes', [])) ? 'checked' : '' }} class="w-4 h-4 rounded accent-yellow-400 cursor-pointer bg-black/20 border-white/20">
-                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ $theme }}</span>
+                            <span class="text-sm text-emerald-100/80 group-hover:text-white transition">{{ ucfirst($theme) }}</span>
                         </label>
-                        @endforeach
+                        @empty
+                        <span class="text-sm text-emerald-100/50">No themes available</span>
+                        @endforelse
                     </div>
                 </div>
             </form>
