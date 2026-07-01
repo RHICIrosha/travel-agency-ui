@@ -7,7 +7,16 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    <style>
+        /* Hide Google Translate Default UI */
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; height: auto !important; min-height: 100vh !important; }
+        html { height: auto !important; }
+        #google_translate_element { display: none !important; }
+        .goog-tooltip { display: none !important; }
+        .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+    </style>
 </head>
 <body class="text-white relative">
 
@@ -27,7 +36,20 @@
                 <a href="/faq" class="transition hover:text-yellow-400 {{ request()->is('faq') ? 'font-semibold text-yellow-400' : '' }}">FAQ</a>
                 <a href="/contact" class="transition hover:text-yellow-400 {{ request()->is('contact') ? 'font-semibold text-yellow-400' : '' }}">Contact</a>
             </div>
-            <a href="/contact" class="rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
+            <div class="flex items-center gap-4">
+                <div id="google_translate_element"></div>
+                <select id="custom_lang_select" class="bg-white/10 border border-white/20 text-white text-sm rounded-full px-3 py-2 outline-none focus:border-yellow-400 cursor-pointer appearance-none pr-8 relative hover:bg-white/20 transition backdrop-blur-md" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.7rem top 50%; background-size: 0.65rem auto;">
+                    <option value="en" class="bg-emerald-950 text-white">English</option>
+                    <option value="fr" class="bg-emerald-950 text-white">French</option>
+                    <option value="de" class="bg-emerald-950 text-white">German</option>
+                    <option value="it" class="bg-emerald-950 text-white">Italian</option>
+                    <option value="es" class="bg-emerald-950 text-white">Spanish</option>
+                    <option value="ru" class="bg-emerald-950 text-white">Russian</option>
+                    <option value="zh-CN" class="bg-emerald-950 text-white">Chinese</option>
+                    <option value="ja" class="bg-emerald-950 text-white">Japanese</option>
+                    <option value="fi" class="bg-emerald-950 text-white">Finnish</option>
+                </select>
+                <a href="/contact" class="rounded-full bg-white px-4 py-2 font-medium text-emerald-950 transition hover:scale-[1.03] cursor-pointer">
                     Plan Trip
                 </a>
             </div>
@@ -130,8 +152,51 @@
         </div>
     </footer>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,fr,de,it,es,ru,zh-CN,ja,fi',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const customSelect = document.getElementById('custom_lang_select');
+            
+            const changeLanguage = (langValue) => {
+                const googleSelect = document.querySelector('#google_translate_element select') || document.querySelector('.goog-te-combo');
+                if (googleSelect) {
+                    googleSelect.value = langValue;
+                    googleSelect.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    document.cookie = `googtrans=/en/${langValue}; path=/`;
+                    window.location.reload();
+                }
+            };
+
+            const getCookie = (name) => {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+            
+            const googTransCookie = getCookie('googtrans');
+            if (googTransCookie) {
+                const lang = googTransCookie.split('/')[2];
+                if (lang) {
+                    customSelect.value = lang;
+                }
+            }
+
+            customSelect.addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
+
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
