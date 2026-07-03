@@ -31,7 +31,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">24/7 Support</h3>
                 <p class="text-sm text-emerald-100/60 mb-4">Speak directly to our destination experts anytime.</p>
-                <a href="tel:+94771234567" class="text-lg font-semibold text-yellow-400 hover:text-yellow-300 transition">+94 77 123 4567</a>
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings->contact_phone ?? '+94 77 123 4567') }}" class="text-lg font-semibold text-yellow-400 hover:text-yellow-300 transition">{{ $siteSettings->contact_phone ?? '+94 77 123 4567' }}</a>
             </div>
 
             <!-- Info Card 2: Email -->
@@ -41,7 +41,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Email Us</h3>
                 <p class="text-sm text-emerald-100/60 mb-4">We usually reply within 2 hours during business days.</p>
-                <a href="mailto:hello@sanduntravels.com" class="text-lg font-semibold text-yellow-400 hover:text-yellow-300 transition">hello@sanduntravels.com</a>
+                <a href="mailto:{{ $siteSettings->contact_email ?? 'hello@sanduntravels.com' }}" class="text-lg font-semibold text-yellow-400 hover:text-yellow-300 transition">{{ $siteSettings->contact_email ?? 'hello@sanduntravels.com' }}</a>
             </div>
 
             <!-- Info Card 3: Headquarters -->
@@ -51,9 +51,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Headquarters</h3>
                 <p class="text-sm text-emerald-100/60 leading-relaxed">
-                    123 Paradise Avenue,<br>
-                    Colombo 03,<br>
-                    Sri Lanka
+                    {!! nl2br(e($siteSettings->contact_address ?? "123 Paradise Avenue,\nColombo 03,\nSri Lanka")) !!}
                 </p>
             </div>
 
