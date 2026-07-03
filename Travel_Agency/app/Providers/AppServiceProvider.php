@@ -25,5 +25,9 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('site_settings')) {
             View::share('siteSettings', SiteSetting::getSettings());
         }
+
+        \Illuminate\Support\Facades\Gate::before(function ($user, $ability) {
+            return $user->hasRole('super_admin') ? true : null;
+        });
     }
 }
