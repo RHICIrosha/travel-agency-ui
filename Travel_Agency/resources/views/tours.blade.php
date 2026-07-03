@@ -14,6 +14,23 @@
         <!-- Sidebar Filters -->
         <aside class="w-full lg:w-72 shrink-0 glass-panel shine-border rounded-3xl p-6 self-start lg:sticky lg:top-32 reveal-up delay-100">
             <form id="filterForm" action="/tours" method="GET">
+                <!-- Filter: Currency -->
+                <div class="mb-8">
+                    <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Currency</h3>
+                    <div class="relative">
+                        <select name="currency" onchange="this.form.submit()" class="w-full bg-black/20 border border-white/20 text-white rounded-xl px-4 py-3 outline-none focus:border-yellow-400 transition-colors appearance-none cursor-pointer">
+                            @foreach($currencies as $currency)
+                                <option value="{{ $currency }}" {{ $selectedCurrency === $currency ? 'selected' : '' }} class="bg-gray-800 text-white">{{ $currency }}</option>
+                            @endforeach
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-white/10 mb-8">
+
                 <!-- Filter: Number of Days -->
                 <div class="mb-8">
                     <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Number of Days</h3>
@@ -110,7 +127,7 @@
                         <h3 class="text-lg font-bold text-white mb-6 flex-1 group-hover:text-yellow-400 transition-colors">{{ $tour->duration_days }} Days - {{ $tour->title }}</h3>
                         <div class="flex justify-between items-end mt-auto pt-4 border-t border-white/10">
                             <span class="text-emerald-100/60 text-xs">Starting From</span>
-                            <span class="text-white font-bold tracking-wide">LKR {{ number_format($tour->price) }}</span>
+                            <span class="text-white font-bold tracking-wide">{{ $selectedCurrency }} {{ number_format($tour->price * $exchangeRate) }}</span>
                         </div>
                     </div>
                 </a>

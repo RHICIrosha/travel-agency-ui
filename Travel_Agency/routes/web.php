@@ -10,6 +10,30 @@ Route::get('/', function () {
     return view('welcome', compact('settings', 'whyUsItems', 'homeServices', 'featuredDestinations'));
 });
 Route::get('/tours', function (\Illuminate\Http\Request $request) { 
+    // Currency handling
+    $currencies = ['LKR', 'USD', 'EUR', 'GBP', 'AUD', 'CAD'];
+    $selectedCurrency = $request->input('currency', 'LKR');
+    if (!in_array($selectedCurrency, $currencies)) {
+        $selectedCurrency = 'LKR';
+    }
+
+    $exchangeRate = 1;
+    if ($selectedCurrency !== 'LKR') {
+        $rates = \Illuminate\Support\Facades\Cache::remember('exchange_rates_lkr', 43200, function () {
+            $response = \Illuminate\Support\Facades\Http::get('https://open.er-api.com/v6/latest/LKR');
+            if ($response->successful()) {
+                return $response->json('rates');
+            }
+            return null;
+        });
+
+        if ($rates && isset($rates[$selectedCurrency])) {
+            $exchangeRate = $rates[$selectedCurrency];
+        } else {
+            $selectedCurrency = 'LKR'; // Fallback if API fails
+        }
+    }
+
     $query = \App\Models\Tour::with('destination');
 
     if ($request->filled('days')) {
@@ -67,7 +91,7 @@ Route::get('/tours', function (\Illuminate\Http\Request $request) {
     $maxDays = \App\Models\Tour::max('duration_days') ?: 15;
     $minDays = \App\Models\Tour::min('duration_days') ?: 1;
     
-    return view('tours', compact('tours', 'allDestinations', 'allTripTypes', 'allThemes', 'maxDays', 'minDays')); 
+    return view('tours', compact('tours', 'allDestinations', 'allTripTypes', 'allThemes', 'maxDays', 'minDays', 'selectedCurrency', 'exchangeRate', 'currencies')); 
 });
 Route::get('/tours/{tour}', function (\App\Models\Tour $tour) { 
     $tour->load('itineraries');
