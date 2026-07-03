@@ -63,8 +63,11 @@ Route::get('/tours', function (\Illuminate\Http\Request $request) {
             }
         }
     }
+    // Fetch max and min days for the filter
+    $maxDays = \App\Models\Tour::max('duration_days') ?: 15;
+    $minDays = \App\Models\Tour::min('duration_days') ?: 1;
     
-    return view('tours', compact('tours', 'allDestinations', 'allTripTypes', 'allThemes')); 
+    return view('tours', compact('tours', 'allDestinations', 'allTripTypes', 'allThemes', 'maxDays', 'minDays')); 
 });
 Route::get('/tours/{tour}', function (\App\Models\Tour $tour) { 
     $tour->load('itineraries');

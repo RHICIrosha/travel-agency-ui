@@ -18,11 +18,11 @@
                 <div class="mb-8">
                     <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Number of Days</h3>
                     <div class="px-2">
-                        <input type="range" name="days" min="3" max="15" value="{{ request('days', 15) }}" onchange="this.form.submit()" oninput="document.getElementById('days_val').innerText = this.value" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-yellow-400">
+                        <input type="range" name="days" min="{{ $minDays }}" max="{{ $maxDays }}" value="{{ request('days', $maxDays) }}" onchange="this.form.submit()" oninput="document.getElementById('days_val').innerText = this.value" class="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-yellow-400">
                         <div class="flex justify-between text-xs text-emerald-100/60 mt-2 font-medium">
-                            <span>3</span>
-                            <span id="days_val" class="text-white font-bold">{{ request('days', 15) }}</span>
-                            <span>15</span>
+                            <span>{{ $minDays }}</span>
+                            <span id="days_val" class="text-white font-bold">{{ request('days', $maxDays) }}</span>
+                            <span>{{ $maxDays }}</span>
                         </div>
                     </div>
                 </div>
