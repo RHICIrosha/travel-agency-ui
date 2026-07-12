@@ -113,10 +113,14 @@
                     <a href="#changes"          class="toc-link"><span class="text-yellow-400">11</span> Changes to Terms</a>
                     <a href="#tos-contact"      class="toc-link"><span class="text-yellow-400">12</span> Contact</a>
                 </nav>
-                <div class="mt-6 pt-5 border-t border-white/8">
+                <div class="mt-6 pt-5 border-t border-white/8 flex flex-col gap-2">
                     <a href="/privacy" class="text-xs text-white/35 hover:text-yellow-400 transition flex items-center gap-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         Privacy Policy
+                    </a>
+                    <a href="/cancellation-policy" class="text-xs text-white/35 hover:text-yellow-400 transition flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        Cancellation Policy
                     </a>
                 </div>
             </div>
@@ -159,15 +163,14 @@
 
             <div class="section-card" id="cancellations">
                 <h2><span class="section-icon">↩️</span> Cancellations & Refunds</h2>
-                <p>Cancellation policies vary by tour and are communicated at the time of booking confirmation. General guidelines:</p>
+                <p>Booking cancellations and refund eligibility are governed by our dedicated Cancellation Policy.</p>
                 <ul>
-                    <li><strong style="color:#fff">30+ days before departure:</strong> Full refund minus administrative fees</li>
-                    <li><strong style="color:#fff">15–29 days before departure:</strong> 50% refund of total tour cost</li>
-                    <li><strong style="color:#fff">7–14 days before departure:</strong> 25% refund</li>
-                    <li><strong style="color:#fff">Less than 7 days:</strong> No refund (deposit and full payment forfeited)</li>
+                    <li><strong style="color:#fff">Cancellation More Than 30 Days Before Departure:</strong> Eligible for a 70% refund of the total tour cost.</li>
+                    <li><strong style="color:#fff">Cancellation Within 30 Days of Departure:</strong> Bookings cancelled 30 days or less before departure are non-refundable.</li>
+                    <li><strong style="color:#fff">Booking Deposit:</strong> A 30% deposit is required to confirm every booking and is non-refundable.</li>
                 </ul>
-                <div class="warning-box">
-                    ⚠️ Cancellations caused by circumstances beyond our control (natural disasters, government travel restrictions, force majeure events) are handled on a case-by-case basis with alternative arrangements offered where possible.
+                <div class="highlight-box">
+                    For detailed rules, exceptions, third-party services (airline tickets, visas), and refund processing timelines, please review the full <a href="/cancellation-policy" class="underline hover:text-yellow-400 font-semibold">Cancellation Policy</a>.
                 </div>
                 <p>All cancellation requests must be submitted in writing to our official email address.</p>
             </div>

@@ -172,6 +172,9 @@ Route::get('/privacy', function () {
 Route::get('/terms', function () {
     return view('terms');
 });
+Route::get('/cancellation-policy', function () {
+    return view('cancellation-policy');
+});
 Route::get('/sitemap', function () {
     return view('sitemap');
 });
