@@ -106,7 +106,7 @@
 
         <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4">Cancellation Policy</h1>
         <p class="text-white/50 text-sm max-w-2xl leading-relaxed mb-6">
-            If you need to cancel your booking, please review the following cancellation terms carefully. These policies govern refunds, deposits, third-party services, and change requests.
+            If you need to cancel your booking, please review the following cancellation terms carefully. These policies govern refunds, deposits, and change requests.
         </p>
         <div class="flex flex-wrap items-center gap-3">
             <span class="safe-badge">📋 Last updated: {{ date('d F Y') }}</span>
@@ -126,12 +126,11 @@
                     <a href="#more-than-30-days"    class="toc-link"><span class="text-orange-400">01</span> Cancellation > 30 Days</a>
                     <a href="#within-30-days"       class="toc-link"><span class="text-orange-400">02</span> Cancellation ≤ 30 Days</a>
                     <a href="#non-refundable"       class="toc-link"><span class="text-orange-400">03</span> Non-Refundable Deposit</a>
-                    <a href="#third-party"          class="toc-link"><span class="text-orange-400">04</span> Third-Party Services</a>
-                    <a href="#no-show"              class="toc-link"><span class="text-orange-400">05</span> No-Show Policy</a>
-                    <a href="#changes"              class="toc-link"><span class="text-orange-400">06</span> Changes to Bookings</a>
-                    <a href="#refund-processing"    class="toc-link"><span class="text-orange-400">07</span> Refund Processing</a>
-                    <a href="#zenora-cancellation"  class="toc-link"><span class="text-orange-400">08</span> Cancelled by Zenora</a>
-                    <a href="#force-majeure"        class="toc-link"><span class="text-orange-400">09</span> Force Majeure</a>
+                    <a href="#no-show"              class="toc-link"><span class="text-orange-400">04</span> No-Show Policy</a>
+                    <a href="#changes"              class="toc-link"><span class="text-orange-400">05</span> Changes to Bookings</a>
+                    <a href="#refund-processing"    class="toc-link"><span class="text-orange-400">06</span> Refund Processing</a>
+                    <a href="#zenora-cancellation"  class="toc-link"><span class="text-orange-400">07</span> Cancelled by Zenora</a>
+                    <a href="#force-majeure"        class="toc-link"><span class="text-orange-400">08</span> Force Majeure</a>
                 </nav>
                 <div class="mt-6 pt-5 border-t border-white/8">
                     <a href="/terms" class="text-xs text-white/35 hover:text-orange-400 transition flex items-center gap-1.5">
@@ -167,32 +166,26 @@
                 <p>This deposit is <strong>non-refundable</strong> in the event of cancellation, as it is used immediately to secure hotels, transport, and other travel arrangements on your behalf.</p>
             </div>
 
-            <div class="section-card" id="third-party">
-                <h2><span class="section-icon">✈️</span> 4. Airline Tickets, Visa Fees & Third-Party Services</h2>
-                <p>Payments made for airline tickets, visa processing, travel insurance, attraction tickets, or other third-party services are subject to the cancellation policies of the respective service providers.</p>
-                <p>Please note that these payments <strong>may not be refundable</strong> under any circumstances and are governed strictly by external vendors.</p>
-            </div>
-
             <div class="section-card" id="no-show">
-                <h2><span class="section-icon">🚶</span> 5. No-Show Policy</h2>
+                <h2><span class="section-icon">🚶</span> 4. No-Show Policy</h2>
                 <p>Failure to arrive or participate in the booked tour without prior written notice will be treated as a <strong>No-Show</strong>.</p>
                 <p>In this event, no refund will be provided, and all booking payments will be forfeited.</p>
             </div>
 
             <div class="section-card" id="changes">
-                <h2><span class="section-icon">🔄</span> 6. Changes to Bookings</h2>
+                <h2><span class="section-icon">🔄</span> 5. Changes to Bookings</h2>
                 <p>Requests to change travel dates or tour arrangements are subject to availability and may incur additional charges from suppliers.</p>
                 <p>Zenora Travels will make every reasonable effort to accommodate changes where possible, but cannot guarantee availability or avoid third-party pricing adjustments.</p>
             </div>
 
             <div class="section-card" id="refund-processing">
-                <h2><span class="section-icon">⏱️</span> 7. Refund Processing</h2>
+                <h2><span class="section-icon">⏱️</span> 6. Refund Processing</h2>
                 <p>Approved refunds will be processed within <strong>14–21 business days</strong> after confirmation of the cancellation.</p>
                 <p>Processing times may vary depending on the payment method and your financial institution.</p>
             </div>
 
             <div class="section-card" id="zenora-cancellation">
-                <h2><span class="section-icon">🛡️</span> 8. Cancellation by Zenora Travels</h2>
+                <h2><span class="section-icon">🛡️</span> 7. Cancellation by Zenora Travels</h2>
                 <p>In the unlikely event that Zenora Travels cancels a tour due to unforeseen circumstances, operational requirements, or force majeure, customers will be offered either:</p>
                 <ul>
                     <li>A full refund of the amount paid to Zenora Travels (excluding non-refundable third-party costs), or</li>
@@ -201,7 +194,7 @@
             </div>
 
             <div class="section-card" id="force-majeure">
-                <h2><span class="section-icon">🌋</span> 9. Force Majeure</h2>
+                <h2><span class="section-icon">🌋</span> 8. Force Majeure</h2>
                 <p>Zenora Travels shall not be held liable for cancellations, delays, or itinerary changes caused by events beyond our reasonable control, including but not limited to:</p>
                 <ul>
                     <li>Natural disasters or severe weather events</li>
