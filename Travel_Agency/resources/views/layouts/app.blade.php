@@ -10,15 +10,17 @@
 </head>
 <body class="text-white relative">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 p-6 px-6 lg:px-10 pointer-events-none">
-        <header class="mx-auto max-w-7xl glass-panel shine-border flex items-center justify-between rounded-full px-5 py-4 text-sm text-emerald-50 shadow-2xl pointer-events-auto">
+    <nav class="fixed top-0 left-0 right-0 z-50 p-3 px-4 md:p-6 md:px-6 lg:px-10 pointer-events-none">
+        <header class="mx-auto max-w-7xl glass-panel shine-border flex items-center justify-between rounded-full px-4 py-3 md:px-5 md:py-4 text-sm text-emerald-50 shadow-2xl pointer-events-auto">
+            <!-- Logo -->
             <div>
                 <a href="/">
-                    <p class="text-lg font-semibold tracking-[0.24em] text-white uppercase hover:text-yellow-400 transition cursor-pointer">
+                    <p class="text-base md:text-lg font-semibold tracking-[0.18em] md:tracking-[0.24em] text-white uppercase hover:text-yellow-400 transition cursor-pointer">
                         Zenora Travels
                     </p>
                 </a>
             </div>
+            <!-- Desktop Nav Links -->
             <div class="hidden gap-8 md:flex">
                 <a href="/destinations" class="transition hover:text-yellow-400 {{ request()->is('destinations') ? 'font-semibold text-yellow-400' : '' }}">Destinations</a>
                 <a href="/tours" class="transition hover:text-yellow-400 {{ request()->is('tours*') ? 'font-semibold text-yellow-400' : '' }}">Holidays & Tours</a>
@@ -27,7 +29,8 @@
                 <a href="/contact" class="transition hover:text-yellow-400 {{ request()->is('contact') ? 'font-semibold text-yellow-400' : '' }}">Contact</a>
                 <a href="/reviews" class="transition hover:text-yellow-400 {{ request()->is('reviews') ? 'font-semibold text-yellow-400' : '' }}">Reviews</a>
             </div>
-            <div class="flex items-center gap-4">
+            <!-- Desktop Right Controls -->
+            <div class="hidden md:flex items-center gap-4">
                 <div id="google_translate_element"></div>
                 <select id="custom_lang_select" class="bg-white/10 border border-white/20 text-white text-sm rounded-full px-3 py-2 outline-none focus:border-yellow-400 cursor-pointer appearance-none pr-8 relative hover:bg-white/20 transition backdrop-blur-md" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 0.7rem top 50%; background-size: 0.65rem auto;">
                     <option value="en" class="bg-emerald-950 text-white">English</option>
@@ -44,8 +47,102 @@
                     Plan Trip
                 </a>
             </div>
+            <!-- Mobile: Plan Trip + Hamburger -->
+            <div class="flex md:hidden items-center gap-3">
+                <a href="/contact" class="rounded-full bg-yellow-400 px-4 py-2 text-xs font-bold text-emerald-950 transition hover:bg-yellow-300">
+                    Plan Trip
+                </a>
+                <button id="mobile-menu-btn" class="w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition" aria-label="Open menu">
+                    <span class="mobile-bar w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                    <span class="mobile-bar w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                    <span class="mobile-bar w-5 h-0.5 bg-white rounded-full transition-all duration-300"></span>
+                </button>
+            </div>
         </header>
     </nav>
+
+    <!-- Mobile Drawer Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] z-50 bg-[#020a05]/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <!-- Drawer Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+            <p class="text-sm font-bold tracking-[0.2em] text-white uppercase">Menu</p>
+            <button onclick="closeMobileMenu()" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <!-- Drawer Nav Links -->
+        <nav class="flex flex-col gap-1 px-4 py-6 flex-1">
+            <a href="/" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('/') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Home
+            </a>
+            <a href="/destinations" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('destinations') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Destinations
+            </a>
+            <a href="/tours" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('tours*') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                Holidays & Tours
+            </a>
+            <a href="/#services" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                Services
+            </a>
+            <a href="/faq" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('faq') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                FAQ
+            </a>
+            <a href="/contact" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('contact') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                Contact
+            </a>
+            <a href="/reviews" onclick="closeMobileMenu()" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-emerald-100/80 hover:text-white hover:bg-white/5 transition {{ request()->is('reviews') ? 'text-yellow-400 font-semibold bg-yellow-400/10' : '' }}">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+                Reviews
+            </a>
+        </nav>
+        <!-- Drawer Language Selector -->
+        <div class="px-6 pb-8 border-t border-white/10 pt-6">
+            <p class="text-xs text-emerald-100/50 uppercase tracking-wider mb-3">Language</p>
+            <select id="mobile_lang_select" class="w-full bg-white/10 border border-white/20 text-white text-sm rounded-xl px-4 py-3 outline-none focus:border-yellow-400 cursor-pointer">
+                <option value="en" class="bg-emerald-950">🇬🇧 English</option>
+                <option value="fr" class="bg-emerald-950">🇫🇷 French</option>
+                <option value="de" class="bg-emerald-950">🇩🇪 German</option>
+                <option value="it" class="bg-emerald-950">🇮🇹 Italian</option>
+                <option value="es" class="bg-emerald-950">🇪🇸 Spanish</option>
+                <option value="ru" class="bg-emerald-950">🇷🇺 Russian</option>
+                <option value="zh-CN" class="bg-emerald-950">🇨🇳 Chinese</option>
+                <option value="ja" class="bg-emerald-950">🇯🇵 Japanese</option>
+                <option value="fi" class="bg-emerald-950">🇫🇮 Finnish</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        function openMobileMenu() {
+            const overlay = document.getElementById('mobile-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            overlay.classList.remove('hidden');
+            setTimeout(() => { overlay.classList.add('opacity-100'); overlay.classList.remove('opacity-0'); }, 10);
+            drawer.classList.remove('translate-x-full');
+        }
+        function closeMobileMenu() {
+            const overlay = document.getElementById('mobile-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            overlay.classList.remove('opacity-100'); overlay.classList.add('opacity-0');
+            drawer.classList.add('translate-x-full');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
+        document.getElementById('mobile_lang_select').addEventListener('change', function(e) {
+            const googleSelect = document.querySelector('#google_translate_element select') || document.querySelector('.goog-te-combo');
+            if (googleSelect) { googleSelect.value = e.target.value; googleSelect.dispatchEvent(new Event('change', { bubbles: true })); }
+            else { document.cookie = `googtrans=/en/${e.target.value}; path=/`; window.location.reload(); }
+        });
+    </script>
     @yield('content')
 
     <!-- Footer Section -->

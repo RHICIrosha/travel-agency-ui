@@ -9,8 +9,8 @@
     <section class="grid-pattern relative">
         <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at 15% 50%, rgba(250,204,21,0.06) 0%, transparent 65%), radial-gradient(ellipse 55% 70% at 85% 15%, rgba(34,197,94,0.07) 0%, transparent 60%);"></div>
 
-        <div class="mx-auto max-w-7xl px-6 lg:px-10 pt-28 pb-16">
-            <div class="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 pt-24 pb-12 sm:pt-28 sm:pb-16">
+            <div class="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
 
                 {{-- LEFT: Hero Text --}}
                 <div class="relative z-10 reveal-up">
@@ -71,8 +71,8 @@
                     </div>
                 </div>
 
-                {{-- RIGHT: Image Cards 2-column grid --}}
-                <div class="relative reveal-scale">
+                {{-- RIGHT: Image Cards 2-column grid (hidden on mobile, visible on lg+) --}}
+                <div class="relative reveal-scale hidden lg:block">
                     <div class="absolute -left-8 top-8 h-40 w-40 rounded-full bg-yellow-400/20 blur-3xl floaty pointer-events-none"></div>
                     <div class="absolute right-0 bottom-8 h-36 w-36 rounded-full bg-emerald-500/15 blur-3xl floaty pointer-events-none" style="animation-delay:-3s;"></div>
 
@@ -150,19 +150,19 @@
 
                 <div class="grid grid-cols-2 gap-4 relative z-10">
                     <div class="glass-panel shine-border overflow-hidden rounded-[1.5rem] row-span-2">
-                        <img src="{{ $settings->about_image_1 ? asset('storage/' . $settings->about_image_1) : 'https://images.unsplash.com/photo-1567254790-5c5bc11d0d27?auto=format&fit=crop&w=800&q=80' }}" alt="Sri Lanka ancient temple" class="w-full h-full object-cover" style="min-height:340px;">
+                        <img src="{{ $settings->about_image_1 ? asset('storage/' . $settings->about_image_1) : 'https://images.unsplash.com/photo-1567254790-5c5bc11d0d27?auto=format&fit=crop&w=800&q=80' }}" alt="Sri Lanka ancient temple" class="w-full h-full object-cover" style="min-height:260px;">
                     </div>
                     <div class="glass-panel shine-border overflow-hidden rounded-[1.5rem]">
-                        <img src="{{ $settings->about_image_2 ? asset('storage/' . $settings->about_image_2) : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' }}" alt="Sri Lanka beach" class="w-full h-48 object-cover">
+                        <img src="{{ $settings->about_image_2 ? asset('storage/' . $settings->about_image_2) : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' }}" alt="Sri Lanka beach" class="w-full h-32 sm:h-48 object-cover">
                     </div>
                     <div class="glass-panel shine-border overflow-hidden rounded-[1.5rem]">
-                        <img src="{{ $settings->about_image_3 ? asset('storage/' . $settings->about_image_3) : 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80' }}" alt="Wildlife safari" class="w-full h-48 object-cover">
+                        <img src="{{ $settings->about_image_3 ? asset('storage/' . $settings->about_image_3) : 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80' }}" alt="Wildlife safari" class="w-full h-32 sm:h-48 object-cover">
                     </div>
                 </div>
 
-                <div class="absolute -bottom-4 left-4 glass-panel shine-border rounded-2xl px-5 py-4 z-20 shadow-xl">
+                <div class="absolute -bottom-4 left-4 glass-panel shine-border rounded-2xl px-4 py-3 sm:px-5 sm:py-4 z-20 shadow-xl">
                     <p class="text-xs uppercase tracking-wider text-yellow-400 mb-1">{{ $settings->about_since_year }}</p>
-                    <p class="text-white font-bold text-lg leading-none">{{ $settings->about_experience_label }}</p>
+                    <p class="text-white font-bold text-base sm:text-lg leading-none">{{ $settings->about_experience_label }}</p>
                 </div>
             </div>
 
