@@ -8,10 +8,13 @@ use App\Models\HomeService;
 use App\Models\Review;
 use App\Models\Tour;
 use App\Models\WhyUsItem;
+use App\Models\SiteSetting;
+use App\Mail\ContactSubmissionMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     $settings = HomepageSetting::getSettings();
@@ -123,7 +126,25 @@ Route::get('/destinations', function () {
     return view('destinations', compact('destinations', 'categories'));
 });
 Route::get('/contact', function () {
-    return view('contact');
+    $destinations = App\Models\Destination::all();
+
+    return view('contact', compact('destinations'));
+});
+
+Route::post('/contact', function (Request $request) {
+    $validated = $request->validate([
+        'name' => 'required|string|max:100',
+        'email' => 'required|email|max:150',
+        'phone' => 'required|string|max:50',
+        'destination' => 'required|string|max:100',
+        'coupon' => 'nullable|string|max:50',
+    ]);
+
+    $adminEmail = SiteSetting::getSettings()->contact_email ?? 'hello@zenoratravels.com';
+
+    Mail::to($adminEmail)->send(new ContactSubmissionMail($validated));
+
+    return back()->with('success', 'Your quote request has been sent! Our team will contact you within 2 hours.');
 });
 
 Route::get('/reviews', function () {

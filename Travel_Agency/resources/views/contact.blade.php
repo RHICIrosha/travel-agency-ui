@@ -62,21 +62,45 @@
             
             <h2 class="text-2xl font-bold text-white mb-8 border-b border-white/10 pb-4">Personalised Quote Form</h2>
             
-            <form action="#" method="POST" class="flex flex-col gap-6">
+            @if (session('success'))
+                <div class="mb-8 p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-sm flex items-start gap-3">
+                    <span class="text-lg">✅</span>
+                    <div>
+                        <strong class="block font-bold text-white mb-1">Quote Request Sent!</strong>
+                        {{ session('success') }}
+                    </div>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="mb-8 p-5 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm flex items-start gap-3">
+                    <span class="text-lg">⚠️</span>
+                    <div>
+                        <strong class="block font-bold text-white mb-1">Please fix the following:</strong>
+                        <ul class="list-disc pl-4 space-y-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
+            <form action="/contact" method="POST" class="flex flex-col gap-6">
                 @csrf
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Full Name -->
                     <div>
                         <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Full Name</label>
-                        <input type="text" name="name" placeholder="John Jackson" required 
+                        <input type="text" name="name" placeholder="John Jackson" value="{{ old('name') }}" required 
                             class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition">
                     </div>
                     
                     <!-- Email Address -->
                     <div>
                         <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Email Address</label>
-                        <input type="email" name="email" placeholder="Hello@outlook.com" required 
+                        <input type="email" name="email" placeholder="Hello@outlook.com" value="{{ old('email') }}" required 
                             class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition">
                     </div>
                 </div>
@@ -85,7 +109,7 @@
                     <!-- Phone Number -->
                     <div>
                         <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Phone Number</label>
-                        <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required 
+                        <input type="tel" name="phone" placeholder="+1 (555) 000-0000" value="{{ old('phone') }}" required 
                             class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition">
                     </div>
 
@@ -95,14 +119,12 @@
                         <div class="relative">
                             <select name="destination" required 
                                 class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition appearance-none cursor-pointer">
-                                <option value="" disabled selected class="text-gray-500">Select a Destination</option>
-                                <option value="srilanka" class="bg-[#05180d]">Sri Lanka</option>
-                                <option value="maldives" class="bg-[#05180d]">Maldives</option>
-                                <option value="vietnam" class="bg-[#05180d]">Vietnam</option>
-                                <option value="indonesia" class="bg-[#05180d]">Indonesia</option>
-                                <option value="dubai" class="bg-[#05180d]">Dubai</option>
-                                <option value="cambodia" class="bg-[#05180d]">Cambodia</option>
-                                <option value="singapore" class="bg-[#05180d]">Singapore</option>
+                                <option value="" disabled {{ !old('destination') ? 'selected' : '' }} class="text-gray-500">Select a Destination</option>
+                                @foreach($destinations as $destination)
+                                    <option value="{{ $destination->name }}" class="bg-[#05180d]" {{ old('destination') === $destination->name ? 'selected' : '' }}>
+                                        {{ $destination->name }}
+                                    </option>
+                                @endforeach
                             </select>
                             <!-- Custom Select Arrow -->
                             <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-emerald-100/50">
@@ -117,8 +139,8 @@
                     <button type="button" onclick="document.getElementById('coupon-field').classList.toggle('hidden')" class="text-sm text-yellow-400 font-medium hover:text-yellow-300 transition flex items-center gap-2">
                         <span>🏷️</span> Have a coupon?
                     </button>
-                    <div id="coupon-field" class="hidden mt-4 transition-all duration-300">
-                        <input type="text" name="coupon" placeholder="Enter promo code" 
+                    <div id="coupon-field" class="{{ old('coupon') ? '' : 'hidden' }} mt-4 transition-all duration-300">
+                        <input type="text" name="coupon" placeholder="Enter promo code" value="{{ old('coupon') }}" 
                             class="w-full md:w-1/2 bg-black/30 border border-white/10 rounded-xl px-5 py-3 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 transition">
                     </div>
                 </div>
