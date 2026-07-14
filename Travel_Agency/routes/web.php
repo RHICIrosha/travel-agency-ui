@@ -126,9 +126,17 @@ Route::get('/destinations', function () {
     return view('destinations', compact('destinations', 'categories'));
 });
 Route::get('/contact', function () {
-    $destinations = App\Models\Destination::all();
-
-    return view('contact', compact('destinations'));
+    try {
+        $destinations = Destination::all();
+        return view('contact', compact('destinations'));
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => explode("\n", $e->getTraceAsString()),
+        ], 500);
+    }
 });
 
 Route::post('/contact', function (Request $request) {
