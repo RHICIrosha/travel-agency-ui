@@ -282,43 +282,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Get A Quote Form (Sidebar Version) -->
-            <div class="glass-panel shine-border rounded-[2rem] p-6 sm:p-8">
-                <h3 class="text-xl font-bold text-white mb-2">Get a Quote</h3>
-                <p class="text-xs text-emerald-100/60 mb-6">Our dedicated team of local experts are available 24/7, ready to provide assistance whenever you need it.</p>
-                
-                <form action="#" method="POST" class="flex flex-col gap-4 text-sm text-white">
-                    @csrf
-                    <div>
-                        <input type="text" placeholder="Full Name" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-400 text-xs transition">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="Email Address" required class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-400 text-xs transition">
-                    </div>
-                    <div>
-                        <select class="w-full bg-emerald-950 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-400 text-xs cursor-pointer transition">
-                            <option value="" disabled selected>Select a Destination</option>
-                            <option value="srilanka">Sri Lanka</option>
-                            <option value="maldives">Maldives</option>
-                            <option value="vietnam">Vietnam</option>
-                            <option value="indonesia">Indonesia</option>
-                            <option value="dubai">Dubai</option>
-                            <option value="cambodia">Cambodia</option>
-                            <option value="singapore">Singapore</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="tel" required placeholder="Phone Number" class="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-400 text-xs transition">
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-full transition mt-2 text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                        Get Personalised Quote
-                    </button>
-                    <p class="text-[10px] text-emerald-100/40 text-center mt-1">We guarantee that your information will not be shared with any third parties.</p>
-                </form>
-            </div>
-
         </div>
     </div>
 </main>
