@@ -31,49 +31,19 @@
                 </h2>
                 
                 <div class="flex flex-col gap-3">
-                    <!-- FAQ Item 1 -->
+                    @forelse($faqs as $faq)
                     <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
                         <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            Where is Zenora Travels located?
+                            {{ $faq->question }}
                             <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
-                            Zenora Travels is located in Sri Lanka, offering premium travel experiences with a dedicated network of local destination experts.
+                            {!! nl2br(e($faq->answer)) !!}
                         </div>
                     </div>
-
-                    <!-- FAQ Item 2 -->
-                    <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
-                        <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            What are the countries to which I can fly with Zenora Travels?
-                            <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
-                            We currently specialize in tailor-made travel connecting you with local experts in places like Sri Lanka, Maldives, Vietnam, Cambodia, Indonesia, Dubai, and Singapore.
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 3 -->
-                    <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
-                        <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            How do I book a tour with Zenora Travels?
-                            <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
-                            Booking is simple! Browse our tour packages, click "Book This Trip" or "Get a Quote", fill out the form with your preferences, and one of our destination experts will contact you within 2 hours to finalize your itinerary.
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 4 -->
-                    <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
-                        <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            What do the general timings look like, when I book?
-                            <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
-                            Timings vary based on your custom itinerary. Generally, daily tours start around 8:30 AM after breakfast. Your dedicated chauffeur guide will confirm exact pickup times with you the evening prior to each day's activities.
-                        </div>
-                    </div>
+                    @empty
+                    <p class="text-sm text-emerald-100/70">No FAQs available at the moment.</p>
+                    @endforelse
                 </div>
                 
                 <button class="mt-4 text-yellow-400 text-sm font-semibold hover:text-yellow-300 transition flex items-center gap-2">
@@ -84,7 +54,7 @@
             <hr class="border-white/10">
 
             <!-- Section: Destination Based FAQ -->
-            <div>
+            {{-- <div>
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <span class="text-emerald-400 text-xl">🗺️</span> Destination Based FAQ
                 </h2>
@@ -233,7 +203,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 

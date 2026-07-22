@@ -9,6 +9,7 @@ use App\Models\Review;
 use App\Models\Tour;
 use App\Models\WhyUsItem;
 use App\Models\SiteSetting;
+use App\Models\Faq;
 use App\Mail\ContactSubmissionMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -115,7 +116,8 @@ Route::get('/tours/{tour}', function (Tour $tour) {
     return view('tour-detail', compact('tour'));
 });
 Route::get('/faq', function () {
-    return view('faq');
+    $faqs = Faq::where('is_active', true)->orderBy('sort_order')->get();
+    return view('faq', compact('faqs'));
 });
 
 // Add these two new routes:
