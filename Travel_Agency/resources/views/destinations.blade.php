@@ -21,17 +21,24 @@
         <span class="text-white">Destinations</span>
     </div>
 
+    @php
+        $settings = \App\Models\SiteSetting::getSettings();
+        $heroImage = $settings->destinations_hero_image 
+            ? Storage::url($settings->destinations_hero_image) 
+            : 'https://images.unsplash.com/photo-1588614959060-4d144f28b207?q=80&w=2000&auto=format&fit=crop';
+    @endphp
+
     <div class="relative rounded-[2.5rem] overflow-hidden mb-20 reveal-up min-h-[55vh] flex items-center justify-center p-8 lg:p-16 border border-white/5 shadow-2xl">
-        <img src="https://images.unsplash.com/photo-1588614959060-4d144f28b207?q=80&w=2000&auto=format&fit=crop" alt="Sri Lanka Nature" class="absolute inset-0 w-full h-full object-cover">
+        <img src="{{ $heroImage }}" alt="Sri Lanka Nature" class="absolute inset-0 w-full h-full object-cover">
         
         <div class="absolute inset-0 bg-gradient-to-b from-[#020a05]/95 via-emerald-950/85 to-[#020a05]/95"></div>
         
         <div class="absolute inset-0 bg-noise opacity-[0.04] mix-blend-overlay pointer-events-none"></div>
         
         <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
-            <span class="text-emerald-400 font-medium tracking-[0.2em] text-sm mb-4 uppercase">Discover The Pearl</span>
+            <span class="text-emerald-400 font-medium tracking-[0.2em] text-sm mb-4 uppercase">{{ $settings->destinations_hero_subtitle ?? 'Discover The Pearl' }}</span>
             <h1 class="text-5xl font-serif font-bold text-white sm:text-6xl lg:text-7xl mb-6 tracking-tight drop-shadow-xl">
-                Explore <span class="text-emerald-300 font-medium italic">Sri Lanka</span>
+                {!! str_replace('Sri Lanka', '<span class="text-emerald-300 font-medium italic">Sri Lanka</span>', e($settings->destinations_hero_title ?? 'Explore Sri Lanka')) !!}
             </h1>
             <p class="text-base sm:text-lg text-emerald-50/80 max-w-2xl leading-relaxed font-light">
                 From golden sun-kissed beaches to misty ancient mountains, discover the absolute best locations to add to your ultimate Sri Lankan itinerary.

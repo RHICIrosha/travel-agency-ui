@@ -55,6 +55,21 @@ class SiteSettingResource extends Resource
                     TextInput::make('social_whatsapp')->label('WhatsApp URL')->nullable(),
                     TextInput::make('social_youtube')->label('YouTube URL')->nullable(),
                 ]),
+
+            Section::make('Destinations Page Hero')
+                ->description('Manage the hero section content on the Destinations page.')
+                ->collapsible()
+                ->columns(2)
+                ->schema([
+                    TextInput::make('destinations_hero_subtitle')->label('Subtitle')->required(),
+                    TextInput::make('destinations_hero_title')->label('Title')->required(),
+                    \Filament\Forms\Components\FileUpload::make('destinations_hero_image')
+                        ->label('Hero Image')
+                        ->image()
+                        ->directory('settings')
+                        ->columnSpanFull()
+                        ->nullable(),
+                ]),
         ]);
     }
 
