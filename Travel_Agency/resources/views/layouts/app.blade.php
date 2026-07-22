@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Zenora Travels | Discover the Soul of Sri Lanka</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -150,114 +151,140 @@
     @yield('content')
 
     <!-- Footer Section -->
-    <footer class="relative mt-20 border-t border-emerald-500/20 bg-[#020a05]/80 backdrop-blur-xl pt-16 pb-8 z-10">
+    <footer class="relative mt-20 border-t border-yellow-400/20 bg-[#020a05] pt-20 pb-8 z-10 overflow-hidden">
         
-        <!-- Decorative Glows -->
-        <div class="absolute top-0 left-1/4 w-96 h-px bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent"></div>
-        <div class="absolute -top-10 right-1/4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent"></div>
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-yellow-400/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-20 left-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-20 right-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="mx-auto max-w-7xl px-6 lg:px-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
-                
-                <!-- Column 1: Brand & About -->
-                <div class="flex flex-col gap-6">
-                    <a href="/" class="inline-block">
-                        <p class="text-xl font-bold tracking-[0.2em] text-white uppercase">
-                            Zenora Travels
-                        </p>
-                    </a>
-                    <p class="text-sm text-emerald-100/60 leading-relaxed">
-                        {{ $siteSettings->footer_about_text ?? "We create meaningful experiences and lifelong memories across Sri Lanka. Local expertise, personalized service, and a passion for adventure — that's Zenora Travels." }}
-                    </p>
-                    <!-- Social Links -->
-                    <div class="flex flex-wrap items-center gap-3 mt-2">
-                        @if(!empty($siteSettings->social_facebook) && $siteSettings->social_facebook !== '#')
-                        <a href="{{ $siteSettings->social_facebook }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="Facebook">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z"/></svg>
-                        </a>
-                        @endif
-                        @if(!empty($siteSettings->social_twitter) && $siteSettings->social_twitter !== '#')
-                        <a href="{{ $siteSettings->social_twitter }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="Twitter / X">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                        </a>
-                        @endif
-                        @if(!empty($siteSettings->social_instagram) && $siteSettings->social_instagram !== '#')
-                        <a href="{{ $siteSettings->social_instagram }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="Instagram">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                        </a>
-                        @endif
-                        @if(!empty($siteSettings->social_linkedin) && $siteSettings->social_linkedin !== '#')
-                        <a href="{{ $siteSettings->social_linkedin }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="LinkedIn">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
-                        @endif
-                        @if(!empty($siteSettings->social_whatsapp) && $siteSettings->social_whatsapp !== '#')
-                        <a href="{{ $siteSettings->social_whatsapp }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="WhatsApp">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.731-1.464L0 24zm6.59-4.846c1.6.95 3.197 1.451 4.962 1.452 5.432 0 9.851-4.42 9.854-9.857.001-2.634-1.02-5.109-2.877-6.97C16.73 1.908 14.25 .887 11.618.887 6.185.887 1.767 5.307 1.764 10.745c-.001 1.845.485 3.649 1.411 5.258l-.995 3.635 3.73-.977c1.554.85 3.12 1.282 4.737 1.282zm11.304-7.854c-.29-.145-1.716-.848-1.978-.942-.262-.096-.453-.145-.644.14-.191.285-.74.942-.907 1.13-.166.188-.333.212-.623.066-1.517-.76-2.522-1.284-3.51-2.97-.26-.445.26-.413.743-1.376.082-.165.04-.31-.02-.455-.06-.145-.453-1.09-.622-1.493-.164-.393-.33-.34-.453-.346-.118-.006-.254-.007-.39-.007-.136 0-.356.05-.543.254-.187.203-.714.697-.714 1.7c0 1.003.73 1.973.832 2.11.102.137 1.437 2.195 3.483 3.076.487.21 1.01.336 1.54.37.525.034.997.016 1.373-.04.418-.063 1.272-.52 1.451-1.02.18-.499.18-.929.126-1.02-.054-.09-.2-.144-.49-.29z"/></svg>
-                        </a>
-                        @endif
-                        @if(!empty($siteSettings->social_youtube) && $siteSettings->social_youtube !== '#')
-                        <a href="{{ $siteSettings->social_youtube }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-emerald-100/80 hover:text-yellow-400 hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all" title="YouTube">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        </a>
-                        @endif
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 relative">
+
+            <!-- TOP: Logo + Tagline centered -->
+            <div class="flex flex-col items-center text-center mb-16">
+                <a href="/" class="inline-block group mb-5">
+                    <div class="relative">
+                        <!-- Gold glow behind logo -->
+                        <div class="absolute inset-0 bg-yellow-400/20 blur-2xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-500"></div>
+                        <img src="/assets/logo/zenora-logo.png" alt="Zenora Travels Logo" 
+                            class="relative h-36 w-auto object-contain drop-shadow-[0_0_20px_rgba(201,168,76,0.5)] group-hover:drop-shadow-[0_0_30px_rgba(201,168,76,0.8)] transition-all duration-500">
                     </div>
+                </a>
+                <p class="text-emerald-100/50 text-sm max-w-md leading-relaxed">
+                    {{ $siteSettings->footer_about_text ?? "We create meaningful experiences and lifelong memories across Sri Lanka. Local expertise, personalized service, and a passion for adventure." }}
+                </p>
+                <!-- Social Icons Row -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
+                    @if(!empty($siteSettings->social_facebook) && $siteSettings->social_facebook !== '#')
+                    <a href="{{ $siteSettings->social_facebook }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="Facebook">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.325V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+                    </a>
+                    @endif
+                    @if(!empty($siteSettings->social_instagram) && $siteSettings->social_instagram !== '#')
+                    <a href="{{ $siteSettings->social_instagram }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="Instagram">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    @endif
+                    @if(!empty($siteSettings->social_whatsapp) && $siteSettings->social_whatsapp !== '#')
+                    <a href="{{ $siteSettings->social_whatsapp }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="WhatsApp">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.731-1.464L0 24zm6.59-4.846c1.6.95 3.197 1.451 4.962 1.452 5.432 0 9.851-4.42 9.854-9.857.001-2.634-1.02-5.109-2.877-6.97C16.73 1.908 14.25 .887 11.618.887 6.185.887 1.767 5.307 1.764 10.745c-.001 1.845.485 3.649 1.411 5.258l-.995 3.635 3.73-.977c1.554.85 3.12 1.282 4.737 1.282zm11.304-7.854c-.29-.145-1.716-.848-1.978-.942-.262-.096-.453-.145-.644.14-.191.285-.74.942-.907 1.13-.166.188-.333.212-.623.066-1.517-.76-2.522-1.284-3.51-2.97-.26-.445.26-.413.743-1.376.082-.165.04-.31-.02-.455-.06-.145-.453-1.09-.622-1.493-.164-.393-.33-.34-.453-.346-.118-.006-.254-.007-.39-.007-.136 0-.356.05-.543.254-.187.203-.714.697-.714 1.7c0 1.003.73 1.973.832 2.11.102.137 1.437 2.195 3.483 3.076.487.21 1.01.336 1.54.37.525.034.997.016 1.373-.04.418-.063 1.272-.52 1.451-1.02.18-.499.18-.929.126-1.02-.054-.09-.2-.144-.49-.29z"/></svg>
+                    </a>
+                    @endif
+                    @if(!empty($siteSettings->social_youtube) && $siteSettings->social_youtube !== '#')
+                    <a href="{{ $siteSettings->social_youtube }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="YouTube">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    @endif
+                    @if(!empty($siteSettings->social_linkedin) && $siteSettings->social_linkedin !== '#')
+                    <a href="{{ $siteSettings->social_linkedin }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="LinkedIn">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    @endif
+                    @if(!empty($siteSettings->social_twitter) && $siteSettings->social_twitter !== '#')
+                    <a href="{{ $siteSettings->social_twitter }}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-yellow-400/20 flex items-center justify-center text-emerald-100/60 hover:text-yellow-400 hover:border-yellow-400/60 hover:bg-yellow-400/10 transition-all" title="Twitter / X">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    @endif
                 </div>
+            </div>
 
-                <!-- Column 2: Quick Links -->
+            <!-- Gold divider -->
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent mb-14"></div>
+
+            <!-- THREE COLUMNS: Links, Destinations, Contact -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-20 mb-14">
+
+                <!-- Column 1: Quick Links -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Quick Links</h4>
+                    <h4 class="text-yellow-400 font-bold mb-6 text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                        <span class="w-5 h-px bg-yellow-400 inline-block"></span>Quick Links
+                    </h4>
                     <ul class="flex flex-col gap-3 text-sm text-emerald-100/60">
-                        <li><a href="/" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Home</a></li>
-                        <li><a href="/tours" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Holidays & Tours</a></li>
-                        <li><a href="/#destinations" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Destinations</a></li>
-                        <li><a href="/#services" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Our Services</a></li>
-                        <li><a href="/faq" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">FAQ</a></li>
-                        <li><a href="/cancellation-policy" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Cancellation Policy</a></li>
-                        <li><a href="#contact" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Contact Us</a></li>
-                        <li><a href="#reviews" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Reviews</a></li>                    
+                        <li><a href="/" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Home</a></li>
+                        <li><a href="/tours" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Holidays &amp; Tours</a></li>
+                        <li><a href="/destinations" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Destinations</a></li>
+                        <li><a href="/#services" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Our Services</a></li>
+                        <li><a href="/faq" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>FAQ &amp; AI Chat</a></li>
+                        <li><a href="/reviews" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Reviews</a></li>
+                        <li><a href="/cancellation-policy" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Cancellation Policy</a></li>
+                        <li><a href="/contact" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Get a Quote</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Top Destinations -->
+                <!-- Column 2: Top Destinations -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Top Destinations</h4>
+                    <h4 class="text-yellow-400 font-bold mb-6 text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                        <span class="w-5 h-px bg-yellow-400 inline-block"></span>Top Destinations
+                    </h4>
                     <ul class="flex flex-col gap-3 text-sm text-emerald-100/60">
-                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Anuradhapura & Polonnaruwa</a></li>
-                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Sigiriya Rock Citadel</a></li>
-                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Kandy & Nuwara Eliya</a></li>
-                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Yala National Park</a></li>
-                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-block transition-transform">Southern Coastal Beaches</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Sigiriya Rock Fortress</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Ella &amp; Nine Arch Bridge</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Kandy &amp; Temple of the Tooth</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Nuwara Eliya Tea Trails</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Yala National Park Safari</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Galle Dutch Fort</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all group"><span class="w-0 group-hover:w-3 h-px bg-yellow-400 transition-all duration-200 overflow-hidden"></span>Mirissa Whale Watching</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 4: Newsletter & Contact -->
+                <!-- Column 3: Contact & Newsletter -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider text-emerald-400">Stay Updated</h4>
-                    <p class="text-xs text-emerald-100/60 mb-4 leading-relaxed">Subscribe to our newsletter for exclusive tour offers and travel inspiration.</p>
-                    
-                    <form action="#" class="flex gap-2 mb-6">
-                        <input type="email" placeholder="Your email address" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 text-xs transition-colors">
-                        <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-emerald-950 px-4 rounded-lg font-bold transition-colors">
+                    <h4 class="text-yellow-400 font-bold mb-6 text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+                        <span class="w-5 h-px bg-yellow-400 inline-block"></span>Get In Touch
+                    </h4>
+                    <div class="flex flex-col gap-3 text-sm text-emerald-100/60 mb-6">
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings->contact_phone ?? '+94771234567') }}" class="flex items-center gap-3 hover:text-yellow-400 transition-colors group">
+                            <span class="w-8 h-8 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400/20 transition-colors">📞</span>
+                            {{ $siteSettings->contact_phone ?? '+94 77 123 4567' }}
+                        </a>
+                        <a href="mailto:{{ $siteSettings->contact_email ?? 'hello@zenoratravels.com' }}" class="flex items-center gap-3 hover:text-yellow-400 transition-colors group">
+                            <span class="w-8 h-8 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400/20 transition-colors">✉️</span>
+                            {{ $siteSettings->contact_email ?? 'hello@zenoratravels.com' }}
+                        </a>
+                        <p class="flex items-start gap-3">
+                            <span class="w-8 h-8 rounded-full bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-400 mt-0.5 flex-shrink-0">📍</span>
+                            <span>{!! nl2br(e($siteSettings->contact_address ?? "Colombo, Sri Lanka")) !!}</span>
+                        </p>
+                    </div>
+
+                    <h5 class="text-yellow-400 font-bold mb-3 text-xs uppercase tracking-[0.2em]">Newsletter</h5>
+                    <form action="#" class="flex gap-2">
+                        <input type="email" placeholder="Your email address" class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-yellow-400 text-xs transition-colors min-w-0">
+                        <button type="submit" class="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 px-4 rounded-lg font-bold transition-colors flex-shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
                     </form>
-
-                    <div class="flex flex-col gap-2 text-xs text-emerald-100/60">
-                        <p class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
-                            <span>📞</span> <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings->contact_phone ?? '+94 77 123 4567') }}">{{ $siteSettings->contact_phone ?? '+94 77 123 4567' }}</a>
-                        </p>
-                        <p class="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
-                            <span>✉️</span> <a href="mailto:{{ $siteSettings->contact_email ?? 'hello@zenoratravels.com' }}">{{ $siteSettings->contact_email ?? 'hello@zenoratravels.com' }}</a>
-                        </p>
-                    </div>
                 </div>
 
             </div>
 
             <!-- Bottom Copyright Bar -->
-            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-emerald-100/40">
-                <p>&copy; {{ date('Y') }} Zenora Travels. All rights reserved.</p>
+            <div class="border-t border-yellow-400/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-emerald-100/30">
+                <p class="flex items-center gap-2">
+                    <img src="/assets/logo/zenora-logo.png" alt="Zenora Travels" class="h-5 w-auto opacity-60">
+                    &copy; {{ date('Y') }} Zenora Travels. All rights reserved.
+                </p>
                 <div class="flex gap-4">
                     <a href="/privacy" class="hover:text-yellow-400 transition-colors">Privacy Policy</a>
                     <a href="/cancellation-policy" class="hover:text-yellow-400 transition-colors">Cancellation Policy</a>
@@ -265,6 +292,7 @@
                     <a href="/sitemap" class="hover:text-yellow-400 transition-colors">Sitemap</a>
                 </div>
             </div>
+
         </div>
     </footer>
 

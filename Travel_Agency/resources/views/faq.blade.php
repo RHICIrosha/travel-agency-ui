@@ -14,7 +14,7 @@
     <div class="mb-10 reveal-up">
         <h1 class="text-4xl font-bold text-white sm:text-5xl mb-4">Frequently Asked <span class="text-emerald-100/60 font-light">Questions</span></h1>
         <p class="text-sm text-emerald-100/70 max-w-3xl leading-relaxed">
-            Welcome to Sandun Travels! We're excited to have you with us. For any questions you may have, please explore our FAQ page where you'll find helpful answers and information.
+            Welcome to Zenora Travels! We're excited to have you with us. For any questions you may have, please explore our FAQ page where you'll find helpful answers and information.
         </p>
     </div>
 
@@ -34,18 +34,18 @@
                     <!-- FAQ Item 1 -->
                     <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
                         <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            Where is Sandun Travels located?
+                            Where is Zenora Travels located?
                             <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
-                            Sandun Travels is located in Sri Lanka, offering premium travel experiences with a dedicated network of local destination experts.
+                            Zenora Travels is located in Sri Lanka, offering premium travel experiences with a dedicated network of local destination experts.
                         </div>
                     </div>
 
                     <!-- FAQ Item 2 -->
                     <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
                         <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            What are the countries to which I can fly with Sandun travels?
+                            What are the countries to which I can fly with Zenora Travels?
                             <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
@@ -56,7 +56,7 @@
                     <!-- FAQ Item 3 -->
                     <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
                         <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
-                            How do I book a tour with Sandun Travels?
+                            How do I book a tour with Zenora Travels?
                             <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
@@ -85,15 +85,153 @@
 
             <!-- Section: Destination Based FAQ -->
             <div>
-                <h2 class="text-2xl font-bold text-white mb-6">Destination Based FAQ</h2>
-                <div class="flex flex-wrap gap-3">
-                    <button class="px-6 py-2.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30 transition text-sm font-medium">Sri Lanka</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Vietnam</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Cambodia</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Dubai</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Indonesia</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Maldives</button>
-                    <button class="px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium">Singapore</button>
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <span class="text-emerald-400 text-xl">🗺️</span> Destination Based FAQ
+                </h2>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button onclick="switchTab('sigiriya')" class="tab-btn px-6 py-2.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30 transition text-sm font-medium" data-tab="sigiriya">Sigiriya</button>
+                    <button onclick="switchTab('ella')" class="tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium" data-tab="ella">Ella</button>
+                    <button onclick="switchTab('galle')" class="tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium" data-tab="galle">Galle</button>
+                    <button onclick="switchTab('kandy')" class="tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium" data-tab="kandy">Kandy</button>
+                    <button onclick="switchTab('yala')" class="tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium" data-tab="yala">Yala</button>
+                    <button onclick="switchTab('nuwaraeliya')" class="tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium" data-tab="nuwaraeliya">Nuwara Eliya</button>
+                </div>
+
+                <!-- Destination Tab Contents -->
+                <div class="flex flex-col gap-3" id="tab-contents">
+                    
+                    <!-- Sigiriya Pane (Default Active) -->
+                    <div id="tab-sigiriya" class="tab-pane flex flex-col gap-3 transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What is the best time of day to climb Sigiriya Rock?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                It is highly recommended to start climbing early in the morning (around 7:00 AM) or in the late afternoon (around 3:30 PM) to avoid the intense midday heat and the crowds.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                How long does the Sigiriya climb take, and is it difficult?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                The climb to the summit takes about 1.5 to 2 hours in total. There are 1,200 steps to the top. It is moderately challenging but fully accessible to visitors of average fitness.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ella Pane -->
+                    <div id="tab-ella" class="tab-pane flex flex-col gap-3 hidden transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                How can I see the trains passing the Nine Arch Bridge in Ella?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Trains pass the bridge several times a day. Your Zenora Travels private guide will check the daily train timetables to ensure we time your visit perfectly to catch the trains passing over the historic arches.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What are the main hiking routes in Ella?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Little Adam's Peak is a scenic 1-hour easy hike offering panoramic views. Ella Rock is a more demanding 3-to-4-hour hike through tea fields and railway tracks.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Galle Pane -->
+                    <div id="tab-galle" class="tab-pane flex flex-col gap-3 hidden transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What are the top things to do in Galle Fort?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Popular highlights include walking the historic Dutch ramparts, photographing the Galle Lighthouse, visiting colonial-era churches, and exploring boutique shops, cafes, and museums along the cobblestone streets.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                Are there swimmable beaches near Galle?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Yes! Nearby beaches like Unawatuna Beach, Dalawella Beach, and Jungle Beach offer sheltered, calm waters that are safe and perfect for swimming.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kandy Pane -->
+                    <div id="tab-kandy" class="tab-pane flex flex-col gap-3 hidden transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What is the dress code for the Temple of the Sacred Tooth Relic?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Both men and women must wear clothing that covers their shoulders and knees. Shoes and hats must be removed before entering the temple grounds. Wearing white or light-colored clothing is highly appreciated.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                When are the ritual service (Pooja) times at the Temple of the Tooth?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                The traditional Pooja services take place daily in the morning (5:30 AM - 7:00 AM and 9:30 AM - 11:00 AM) and in the evening (6:30 PM - 8:00 PM). Visiting during these times lets you witness the ceremonial drumming and rituals.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yala Pane -->
+                    <div id="tab-yala" class="tab-pane flex flex-col gap-3 hidden transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What is the probability of seeing a leopard in Yala?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Yala National Park has one of the highest leopard densities in the world. Sightings are never 100% guaranteed, but going on an early morning safari (6:00 AM) or a late afternoon safari (3:00 PM) offers the best chances.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                Does Yala National Park close during the year?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Yes, Yala Block 1 normally closes for annual maintenance during the dry season (usually from early September to mid-October). During this time, we redirect safaris to Block 5 or adjacent national parks like Udawalawe or Bundala, which are equally incredible.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nuwara Eliya Pane -->
+                    <div id="tab-nuwaraeliya" class="tab-pane flex flex-col gap-3 hidden transition-opacity duration-300">
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                What is the weather like in Nuwara Eliya, and what should I pack?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Nuwara Eliya is located in the central highlands and has a much cooler climate (ranging from 10°C to 20°C). We strongly recommend packing a light jacket, sweater, and trousers for the cool evenings.
+                            </div>
+                        </div>
+                        <div class="glass-panel border border-white/10 rounded-2xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left p-5 flex justify-between items-center text-white font-semibold hover:text-yellow-400 transition-colors focus:outline-none" onclick="toggleFaq(this)">
+                                Can we tour a tea factory and plantation in Nuwara Eliya?
+                                <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </button>
+                            <div class="px-5 pb-5 text-sm text-emerald-100/70 hidden opacity-0 transition-opacity duration-300">
+                                Absolutely! We arrange guided tea factory tours where you can walk through tea gardens, watch how Ceylon tea is processed and graded, and enjoy a fresh cup of tea.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -111,7 +249,7 @@
                         <span class="text-xl">🤖</span>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold text-sm">Sandun AI Assistant</h3>
+                        <h3 class="text-white font-bold text-sm">Zenora AI Assistant</h3>
                         <p class="text-[10px] text-emerald-400 flex items-center gap-1">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online 24/7
                         </p>
@@ -205,82 +343,164 @@
         }
     }
 
+    // Destination tab switching
+    function switchTab(tabId) {
+        // Hide all panes
+        document.querySelectorAll('.tab-pane').forEach(pane => {
+            pane.classList.add('hidden');
+            pane.classList.add('opacity-0');
+        });
+        
+        // Show active pane
+        const activePane = document.getElementById('tab-' + tabId);
+        if(activePane) {
+            activePane.classList.remove('hidden');
+            setTimeout(() => activePane.classList.remove('opacity-0'), 10);
+        }
+        
+        // Toggle tab button states
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.className = "tab-btn px-6 py-2.5 rounded-full bg-white/5 text-emerald-100/70 border border-white/10 hover:bg-white/10 hover:text-white transition text-sm font-medium";
+        });
+        
+        const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+        if(activeBtn) {
+            activeBtn.className = "tab-btn px-6 py-2.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30 transition text-sm font-medium";
+        }
+    }
+
     // --- AI Chatbot Logic ---
     const chatWindow = document.getElementById('ai-chat-window');
     const aiInput = document.getElementById('ai-input');
     const sendBtn = document.getElementById('ai-send-btn');
     const suggestionsContainer = document.getElementById('ai-suggestions');
 
-    // Database of random questions and dummy answers
-    const botDatabase = [
-        { q: "Do I need a Visa for Sri Lanka?", a: "Yes, travelers to Sri Lanka must apply for an Electronic Travel Authorization (ETA) online before arrival." },
-        { q: "What is the best time to visit?", a: "Sri Lanka is a year-round destination! The West and South coasts are best from December to March, while the East coast is best from May to September." },
-        { q: "Are flights included?", a: "International flights are not included in our base packages, allowing you the flexibility to choose your preferred airline and schedule." },
-        { q: "Is it safe to travel?", a: "Yes, our destinations are very safe for tourists. Your dedicated guide will also ensure a secure and comfortable journey." },
-        { q: "Do you offer vegetarian food?", a: "Absolutely! We can cater to vegetarian, vegan, halal, and gluten-free dietary requirements. Just let us know!" }
+    // Suggested starter questions
+    const starterQuestions = [
+        "What is the best time to visit Sri Lanka?",
+        "Do I need a visa for Sri Lanka?",
+        "What is included in Zenora packages?",
+        "How does the booking process work?",
+        "What is the cancellation policy?",
+        "Is Sri Lanka safe for tourists?",
+        "Are flights included in the tour price?",
+        "What to see in Sigiriya?",
+        "How do I get a quote?",
+        "What should I pack for Nuwara Eliya?",
     ];
 
-    // Function to pick 2 random suggestions
+    // CSRF token from Laravel meta tag (or fallback from cookie)
+    function getCsrfToken() {
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        if (meta) return meta.getAttribute('content');
+        const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+        return match ? decodeURIComponent(match[1]) : '';
+    }
+
+    // Load 2 random starter suggestions
     function loadRandomSuggestions() {
         suggestionsContainer.innerHTML = '';
-        const shuffled = [...botDatabase].sort(() => 0.5 - Math.random());
-        let selected = shuffled.slice(0, 2);
-        
-        selected.forEach(item => {
+        const shuffled = [...starterQuestions].sort(() => 0.5 - Math.random());
+        shuffled.slice(0, 2).forEach(q => {
             const btn = document.createElement('button');
             btn.className = "bg-white/5 border border-white/10 hover:bg-white/10 hover:text-yellow-400 text-[10px] text-emerald-100/70 px-3 py-1.5 rounded-full transition text-left";
-            btn.innerText = item.q;
-            btn.onclick = () => processUserMessage(item.q, item.a);
+            btn.innerText = q;
+            btn.onclick = () => processUserMessage(q);
             suggestionsContainer.appendChild(btn);
         });
     }
 
-    // Add message to chat
+    // Render plain text safely (convert **bold** and newlines)
+    function renderText(text) {
+        return text
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+    }
+
+    // Append a chat bubble
     function appendMessage(text, isUser = false) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `flex gap-2 w-full ${isUser ? 'justify-end' : ''}`;
-        
-        const bubbleClass = isUser 
-            ? "bg-emerald-500/20 border border-emerald-500/30 text-white rounded-2xl rounded-tr-none p-3 max-w-[85%] backdrop-blur" 
-            : "bg-white/10 border border-white/5 text-emerald-50 rounded-2xl rounded-tl-none p-3 max-w-[85%] backdrop-blur";
-            
-        msgDiv.innerHTML = `<div class="${bubbleClass}">${text}</div>`;
+        const bubbleClass = isUser
+            ? "bg-emerald-500/20 border border-emerald-500/30 text-white rounded-2xl rounded-tr-none p-3 max-w-[85%] backdrop-blur text-sm"
+            : "bg-white/10 border border-white/5 text-emerald-50 rounded-2xl rounded-tl-none p-3 max-w-[85%] backdrop-blur text-sm";
+        msgDiv.innerHTML = `<div class="${bubbleClass}">${isUser ? renderText(text) : text}</div>`;
+        chatWindow.appendChild(msgDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return msgDiv;
+    }
+
+    // Show an animated typing indicator
+    function showTypingIndicator() {
+        const msgDiv = document.createElement('div');
+        msgDiv.id = 'typing-indicator';
+        msgDiv.className = 'flex gap-2 w-full';
+        msgDiv.innerHTML = `
+            <div class="bg-white/10 border border-white/5 text-emerald-50 rounded-2xl rounded-tl-none p-3 max-w-[85%] backdrop-blur">
+                <div class="flex gap-1.5 items-center h-4">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-bounce" style="animation-delay:0s"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-bounce" style="animation-delay:0.15s"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-bounce" style="animation-delay:0.3s"></span>
+                </div>
+            </div>`;
         chatWindow.appendChild(msgDiv);
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
-    // Process a message
-    function processUserMessage(question, predefinedAnswer = null) {
-        if(!question.trim()) return;
-        
-        // Hide suggestions immediately after clicking one
-        suggestionsContainer.innerHTML = '';
-        
-        appendMessage(question, true);
-        aiInput.value = '';
-
-        // Simulate typing delay
-        setTimeout(() => {
-            if (predefinedAnswer) {
-                appendMessage(predefinedAnswer);
-            } else {
-                appendMessage("Thanks for your question! A destination expert will be able to give you specific details on that if you fill out the quote form below.");
-            }
-            // Load new suggestions after answering
-            setTimeout(loadRandomSuggestions, 1000);
-        }, 800);
+    function removeTypingIndicator() {
+        const el = document.getElementById('typing-indicator');
+        if (el) el.remove();
     }
 
-    // Event Listeners
-    sendBtn.addEventListener('click', () => {
-        processUserMessage(aiInput.value);
-    });
+    // Disable/enable send button
+    function setLoading(loading) {
+        sendBtn.disabled = loading;
+        sendBtn.innerHTML = loading
+            ? `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>`
+            : `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>`;
+    }
 
-    aiInput.addEventListener('keypress', (e) => {
-        if(e.key === 'Enter') processUserMessage(aiInput.value);
-    });
+    // Core: send message to backend /ai-chat endpoint
+    async function processUserMessage(question) {
+        if (!question.trim()) return;
+        suggestionsContainer.innerHTML = '';
+        appendMessage(question, true);
+        aiInput.value = '';
+        setLoading(true);
+        showTypingIndicator();
+
+        try {
+            const res = await fetch('/ai-chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': getCsrfToken(),
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ message: question }),
+            });
+
+            removeTypingIndicator();
+
+            if (!res.ok) throw new Error('Server error ' + res.status);
+            const data = await res.json();
+            appendMessage(renderText(data.reply || 'Sorry, I couldn\'t get a response. Please try again! 😊'));
+        } catch (err) {
+            removeTypingIndicator();
+            appendMessage('⚠️ Could not connect to the AI. Please try again or contact us at <strong>hello@zenoratravels.com</strong>');
+        } finally {
+            setLoading(false);
+            setTimeout(loadRandomSuggestions, 1200);
+        }
+    }
+
+    // Event listeners
+    sendBtn.addEventListener('click', () => processUserMessage(aiInput.value));
+    aiInput.addEventListener('keypress', e => { if (e.key === 'Enter') processUserMessage(aiInput.value); });
 
     // Initialize
     loadRandomSuggestions();
+
 </script>
 @endsection

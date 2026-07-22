@@ -113,18 +113,40 @@
                             class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition">
                     </div>
 
-                    <!-- Destination -->
+                    <!-- Destination / Tour Select -->
                     <div>
-                        <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Destination</label>
+                        <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Destination or Tour Package</label>
                         <div class="relative">
-                            <select name="destination" required 
+                            <select name="destination" id="destination-select" required onchange="handleDestinationChange(this)"
                                 class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition appearance-none cursor-pointer">
-                                <option value="" disabled {{ !old('destination') ? 'selected' : '' }} class="text-gray-500">Select a Destination</option>
-                                @foreach($destinations as $destination)
-                                    <option value="{{ $destination->name }}" class="bg-[#05180d]" {{ old('destination') === $destination->name ? 'selected' : '' }}>
-                                        {{ $destination->name }}
+                                <option value="" disabled {{ !old('destination') ? 'selected' : '' }} class="text-gray-500">Select a Destination or Tour</option>
+                                
+                                <optgroup label="Custom Itinerary" class="bg-[#05180d] text-yellow-400 font-semibold uppercase text-[10px] tracking-wider">
+                                    <option value="custom" class="bg-[#05180d] text-white font-normal normal-case text-sm" {{ old('destination') === 'custom' || (old('destination') && str_starts_with(old('destination'), 'Custom List:')) ? 'selected' : '' }}>
+                                        ✨ Create a Custom Destination List (Write Below)
                                     </option>
-                                @endforeach
+                                </optgroup>
+
+                                @if(isset($tours) && count($tours) > 0)
+                                    <optgroup label="Already Made Tours" class="bg-[#05180d] text-yellow-400 font-semibold uppercase text-[10px] tracking-wider">
+                                        @foreach($tours as $tour)
+                                            @php $tourVal = $tour->duration_days . ' Days - ' . $tour->title; @endphp
+                                            <option value="Tour: {{ $tourVal }}" class="bg-[#05180d] text-white font-normal normal-case text-sm" {{ old('destination') === 'Tour: ' . $tourVal ? 'selected' : '' }}>
+                                                {{ $tourVal }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
+
+                                @if(isset($destinations) && count($destinations) > 0)
+                                    <optgroup label="Single Destinations (Quick Select)" class="bg-[#05180d] text-yellow-400 font-semibold uppercase text-[10px] tracking-wider">
+                                        @foreach($destinations as $destination)
+                                            <option value="Destination: {{ $destination->name }}" class="bg-[#05180d] text-white font-normal normal-case text-sm" {{ old('destination') === 'Destination: ' . $destination->name ? 'selected' : '' }}>
+                                                {{ $destination->name }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
                             </select>
                             <!-- Custom Select Arrow -->
                             <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-emerald-100/50">
@@ -132,6 +154,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Custom Destination List Textarea (Initially Hidden) -->
+                <div id="custom-destination-group" class="hidden">
+                    <label class="block text-xs text-emerald-100/60 mb-2 font-medium uppercase tracking-wider">Your Custom Destination List</label>
+                    <textarea id="custom-destination-textarea" placeholder="Describe your route or enter the places you want to visit (e.g. Sigiriya, Ella, Galle, Nuwara Eliya)" 
+                        class="w-full bg-black/30 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-emerald-100/30 focus:outline-none focus:border-yellow-400 focus:bg-black/50 transition" rows="3"></textarea>
                 </div>
 
                 <!-- Coupon Section -->
@@ -162,4 +191,43 @@
         
     </div>
 </main>
+
+<script>
+    const select = document.getElementById('destination-select');
+    const customGroup = document.getElementById('custom-destination-group');
+    const customTextarea = document.getElementById('custom-destination-textarea');
+    const form = document.querySelector('form');
+
+    function handleDestinationChange(target) {
+        if (target.value === 'custom') {
+            customGroup.classList.remove('hidden');
+            customTextarea.required = true;
+        } else {
+            customGroup.classList.add('hidden');
+            customTextarea.required = false;
+        }
+    }
+
+    // Handle initial state on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        const initialVal = "{{ old('destination') }}";
+        if (initialVal === 'custom' || initialVal.startsWith('Custom List:')) {
+            select.value = 'custom';
+            customGroup.classList.remove('hidden');
+            customTextarea.required = true;
+            // Pre-fill textarea if old input is available
+            if (initialVal.startsWith('Custom List:')) {
+                customTextarea.value = initialVal.replace('Custom List: ', '');
+            }
+        }
+    });
+
+    // Before submit, copy custom textarea text into the select's value
+    form.addEventListener('submit', (e) => {
+        if (select.value === 'custom') {
+            const customOption = select.querySelector('option[value="custom"]');
+            customOption.value = 'Custom List: ' + customTextarea.value.trim();
+        }
+    });
+</script>
 @endsection

@@ -139,9 +139,9 @@
 
                 @foreach($tour->itineraries as $itinerary)
                 <!-- DAY CONTENT BOX -->
-                <div id="day{{ $itinerary->day_number }}" class="glass-panel shine-border rounded-[2rem] p-6 sm:p-8 scroll-mt-32">
-                    <div class="grid grid-cols-1 md:grid-cols-[1.3fr_0.7fr] gap-6 items-start">
-                        <div>
+                <div id="day{{ $itinerary->day_number }}" class="glass-panel shine-border rounded-[2rem] p-6 sm:p-8 scroll-mt-32 reveal-up delay-[{{ $loop->iteration * 100 }}ms]">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        <div class="order-2 md:order-1">
                             <div class="flex flex-wrap justify-between items-center border-b border-white/10 pb-4 mb-6 gap-2">
                                 <div>
                                     <span class="text-xs uppercase font-bold tracking-widest text-yellow-400">Day {{ str_pad($itinerary->day_number, 2, '0', STR_PAD_LEFT) }}</span>
@@ -168,13 +168,18 @@
                         </div>
                         @if($itinerary->image_url)
                         <!-- Day Place Image Wrapper -->
-                        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shine-border self-center shadow-lg">
-                            <img src="{{ Str::startsWith($itinerary->image_url, 'http') ? $itinerary->image_url : Storage::url($itinerary->image_url) }}" alt="{{ $itinerary->location_name }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shine-border self-center shadow-lg order-1 md:order-2 cursor-pointer group" onclick="openLightbox('{{ Str::startsWith($itinerary->image_url, 'http') ? $itinerary->image_url : Storage::url($itinerary->image_url) }}')">
+                            <img src="{{ Str::startsWith($itinerary->image_url, 'http') ? $itinerary->image_url : Storage::url($itinerary->image_url) }}" alt="{{ $itinerary->location_name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <!-- Overlay Zoom Icon -->
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                            </div>
                         </div>
                         @endif
                     </div>
                 </div>
                 @endforeach
+
 
             </div>
 
@@ -203,7 +208,7 @@
                     <div class="glass-panel rounded-2xl p-4"><p class="text-yellow-400 font-bold text-lg">280+</p><p class="text-xs text-emerald-100/50">Facebook Fans</p></div>
                 </div>
                 <div class="glass-panel shine-border rounded-[2rem] p-6">
-                    <p class="italic text-emerald-100/90 text-sm mb-4">"Our 10 days dream route with Sandun Travels was absolutely flawless. Sharanie organized everything down to the smallest detail. Our private driver was safe, knowledgeable, and incredibly friendly. Highly recommend!"</p>
+                    <p class="italic text-emerald-100/90 text-sm mb-4">"Our 10 days dream route with Zenora Travels was absolutely flawless. Sharanie organized everything down to the smallest detail. Our private driver was safe, knowledgeable, and incredibly friendly. Highly recommend!"</p>
                     <p class="text-xs text-yellow-400 font-bold">— Mark & Elena, Norway</p>
                 </div>
             </div>
@@ -262,6 +267,17 @@
 </main>
 
 <!-- Tab Controls & Interactive Logic -->
+<!-- Lightbox Modal -->
+<div id="image-lightbox" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 cursor-pointer" onclick="closeLightbox()"></div>
+    <div class="relative w-[90%] max-w-5xl h-[80vh] flex flex-col items-center justify-center pointer-events-none transform scale-95 transition-transform duration-300" id="lightbox-content">
+        <button onclick="closeLightbox()" class="absolute -top-12 right-0 md:-right-12 text-white/50 hover:text-white bg-black/50 hover:bg-white/10 rounded-full p-2 transition-all pointer-events-auto">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Zoomed Place" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl pointer-events-auto">
+    </div>
+</div>
+
 <script>
     function switchTab(tabName) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
@@ -285,6 +301,40 @@
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
+
+    // Lightbox Logic
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+        lightboxImg.src = src;
+        lightbox.classList.remove('hidden');
+        
+        // Trigger animations next frame
+        requestAnimationFrame(() => {
+            lightbox.classList.remove('opacity-0');
+            lightboxContent.classList.remove('scale-95');
+        });
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.add('opacity-0');
+        lightboxContent.classList.add('scale-95');
+        
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            lightboxImg.src = '';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+            closeLightbox();
+        }
+    });
 </script>
 @endsection
-
