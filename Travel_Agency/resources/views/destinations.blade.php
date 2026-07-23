@@ -109,7 +109,7 @@
             <div class="glass-panel shine-border rounded-[2rem] overflow-hidden flex flex-col reveal-up {{ $listDelay }} border border-white/5 shadow-xl hover:border-emerald-500/20 transition-colors duration-500">
                 <div class="h-52 overflow-hidden relative group">
                     @if(!empty($category->image_url))
-                        <img src="{{ str_starts_with($category->image_url, 'http') ? $category->image_url : asset($category->image_url) }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ str_starts_with($category->image_url, 'http') ? $category->image_url : Storage::url($category->image_url) }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     @else
                         <div class="w-full h-full bg-emerald-950/40 flex items-center justify-center p-4 text-center">
                             <span class="text-emerald-500 font-medium">{{ $category->name }}</span>
