@@ -62,7 +62,7 @@ class SiteSettingResource extends Resource
                 ->columns(2)
                 ->schema([
                     TextInput::make('destinations_hero_subtitle')->label('Subtitle')->required(),
-                    TextInput::make('destinations_hero_title')->label('Title')->required(),
+                    Textarea::make('destinations_hero_title')->label('Title')->required()->rows(3)->columnSpanFull(),
                     \Filament\Forms\Components\FileUpload::make('destinations_hero_image')
                         ->label('Hero Image')
                         ->image()

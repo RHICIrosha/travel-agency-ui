@@ -38,7 +38,7 @@
         <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
             <span class="text-emerald-400 font-medium tracking-[0.2em] text-sm mb-4 uppercase">{{ $settings->destinations_hero_subtitle ?? 'Discover The Pearl' }}</span>
             <h1 class="text-5xl font-serif font-bold text-white sm:text-6xl lg:text-7xl mb-6 tracking-tight drop-shadow-xl">
-                {!! str_replace('Sri Lanka', '<span class="text-emerald-300 font-medium italic">Sri Lanka</span>', e($settings->destinations_hero_title ?? 'Explore Sri Lanka')) !!}
+                {!! str_replace('Sri Lanka', '<span class="text-emerald-300 font-medium italic">Sri Lanka</span>', nl2br(e($settings->destinations_hero_title ?? 'Explore Sri Lanka'))) !!}
             </h1>
             <p class="text-base sm:text-lg text-emerald-50/80 max-w-2xl leading-relaxed font-light">
                 From golden sun-kissed beaches to misty ancient mountains, discover the absolute best locations to add to your ultimate Sri Lankan itinerary.
